@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_oyNKIF6kEd6b3PniR-hF6Q" name="Package">
+  <elementImport xmi:id="_oy8xAF6kEd6b3PniR-hF6Q">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_oy8xAV6kEd6b3PniR-hF6Q">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_oy8xAl6kEd6b3PniR-hF6Q">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_oy8xA16kEd6b3PniR-hF6Q">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_w17wAF6kEd6b3PniR-hF6Q" name="Client">
+    <ownedAttribute xmi:id="_z3gDkF6kEd6b3PniR-hF6Q" name="panelContent" visibility="private" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_Kujo8F6nEd6b3PniR-hF6Q">
+    <ownedAttribute xmi:id="_2GjVEF6kEd6b3PniR-hF6Q" name="panelVideo" visibility="private" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory">
+    <ownedOperation xmi:id="_7ZspsF6kEd6b3PniR-hF6Q" name="ICommand createCommand">
+      <ownedParameter xmi:id="_3v74QF6lEd6b3PniR-hF6Q" direction="return"/>
+      <ownedParameter xmi:id="_3v74QV6lEd6b3PniR-hF6Q" name="String"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_uj-CgF6mEd6b3PniR-hF6Q" name="SendAvatarCommand createAvatarCommand">
+      <ownedParameter xmi:id="_xi2OcF6mEd6b3PniR-hF6Q" direction="return"/>
+      <ownedParameter xmi:id="_xi2OcV6mEd6b3PniR-hF6Q" name="Image"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="ICommand"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IAmf0F6lEd6b3PniR-hF6Q" name="SendAvatarCommand">
+    <generalization xmi:id="_MBMncF6lEd6b3PniR-hF6Q" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+    <ownedAttribute xmi:id="_Z-0Y4F6lEd6b3PniR-hF6Q" name="imageData" visibility="private" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AyuR8F6nEd6b3PniR-hF6Q" memberEnd="_AyuR8V6nEd6b3PniR-hF6Q _AyuR9F6nEd6b3PniR-hF6Q">
+    <ownedEnd xmi:id="_AyuR8V6nEd6b3PniR-hF6Q" name="src" type="_w17wAF6kEd6b3PniR-hF6Q" association="_AyuR8F6nEd6b3PniR-hF6Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AyuR816nEd6b3PniR-hF6Q" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AyuR8l6nEd6b3PniR-hF6Q" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AyuR9F6nEd6b3PniR-hF6Q" name="dst" type="_xntLMF6kEd6b3PniR-hF6Q" association="_AyuR8F6nEd6b3PniR-hF6Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AyuR9l6nEd6b3PniR-hF6Q" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AyuR9V6nEd6b3PniR-hF6Q" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_Kujo8F6nEd6b3PniR-hF6Q" supplier="_IAmf0F6lEd6b3PniR-hF6Q" client="_xntLMF6kEd6b3PniR-hF6Q"/>
+</uml:Package>
