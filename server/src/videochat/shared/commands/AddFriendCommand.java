@@ -1,7 +1,7 @@
 
-package videochat.commands;
+package videochat.shared.commands;
 
-import videochat.contact.Contact;
+import videochat.shared.contact.Contact;
 
 /**
  * TODO - DOCUMENT ME

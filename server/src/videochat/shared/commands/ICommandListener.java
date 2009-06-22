@@ -1,7 +1,7 @@
 /**
  * 
  */
-package videochat.commands;
+package videochat.shared.commands;
 
 /**
  * TODO - DOCUMENT ME

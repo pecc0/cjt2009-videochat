@@ -1,12 +1,12 @@
 /**
  * 
  */
-package videochat.contact;
+package videochat.shared.contact;
 
 import java.io.Serializable;
 import java.util.List;
 
-import videochat.commands.ICommandListener;
+import videochat.shared.commands.ICommandListener;
 
 /**
  * TODO - DOCUMENT ME

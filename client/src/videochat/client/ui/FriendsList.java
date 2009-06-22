@@ -12,10 +12,10 @@ import java.util.HashSet;
 
 import javax.swing.BoxLayout;
 
-import videochat.commands.AddFriendCommand;
-import videochat.commands.ICommand;
-import videochat.commands.ICommandListener;
-import videochat.contact.Contact;
+import videochat.shared.commands.AddFriendCommand;
+import videochat.shared.commands.ICommand;
+import videochat.shared.commands.ICommandListener;
+import videochat.shared.contact.Contact;
 
 import jmapps.ui.JMPanel;
 
