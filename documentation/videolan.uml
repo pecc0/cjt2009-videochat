@@ -12,20 +12,20 @@
   <elementImport xmi:id="_oy8xA16kEd6b3PniR-hF6Q">
     <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
   </elementImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_w17wAF6kEd6b3PniR-hF6Q" name="Client">
+  <packagedElement xmi:type="uml:Class" xmi:id="_w17wAF6kEd6b3PniR-hF6Q" name="ClientMainWindow" clientDependency="_9450cF8PEd6Zw7uHO3zSzA _fKljoF8oEd6Zw7uHO3zSzA">
     <ownedAttribute xmi:id="_z3gDkF6kEd6b3PniR-hF6Q" name="panelContent" visibility="private" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_Kujo8F6nEd6b3PniR-hF6Q">
+  <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_Kujo8F6nEd6b3PniR-hF6Q _dcUD8F8oEd6Zw7uHO3zSzA">
     <ownedAttribute xmi:id="_2GjVEF6kEd6b3PniR-hF6Q" name="panelVideo" visibility="private" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory">
-    <ownedOperation xmi:id="_7ZspsF6kEd6b3PniR-hF6Q" name="ICommand createCommand">
-      <ownedParameter xmi:id="_3v74QF6lEd6b3PniR-hF6Q" direction="return"/>
-      <ownedParameter xmi:id="_3v74QV6lEd6b3PniR-hF6Q" name="String"/>
+    <ownedOperation xmi:id="_7ZspsF6kEd6b3PniR-hF6Q" name="createCommand">
+      <ownedParameter xmi:id="_2KgF4F8xEd6Zw7uHO3zSzA" direction="return"/>
+      <ownedParameter xmi:id="_2KgF4V8xEd6Zw7uHO3zSzA" name="String"/>
     </ownedOperation>
-    <ownedOperation xmi:id="_uj-CgF6mEd6b3PniR-hF6Q" name="SendAvatarCommand createAvatarCommand">
-      <ownedParameter xmi:id="_xi2OcF6mEd6b3PniR-hF6Q" direction="return"/>
-      <ownedParameter xmi:id="_xi2OcV6mEd6b3PniR-hF6Q" name="Image"/>
+    <ownedOperation xmi:id="_uj-CgF6mEd6b3PniR-hF6Q" name="createAvatarCommand">
+      <ownedParameter xmi:id="_2pfvAF8xEd6Zw7uHO3zSzA" direction="return"/>
+      <ownedParameter xmi:id="_2pfvAV8xEd6Zw7uHO3zSzA" name="Image"/>
     </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="ICommand"/>
@@ -44,4 +44,63 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_Kujo8F6nEd6b3PniR-hF6Q" supplier="_IAmf0F6lEd6b3PniR-hF6Q" client="_xntLMF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rNzcsF8OEd6Zw7uHO3zSzA" name="SelectServerDialog" clientDependency="_fTnOsF8mEd6Zw7uHO3zSzA">
+    <ownedAttribute xmi:id="_uXkC8F8OEd6Zw7uHO3zSzA" name="serverAddress" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_9450cF8PEd6Zw7uHO3zSzA" supplier="_rNzcsF8OEd6Zw7uHO3zSzA" client="_w17wAF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_VHrmMF8mEd6Zw7uHO3zSzA" name="SpringUtilities">
+    <ownedOperation xmi:id="_djQEUF8mEd6Zw7uHO3zSzA" name="makeCompactGrid">
+      <ownedParameter xmi:id="_eIgtgF8mEd6Zw7uHO3zSzA" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_fTnOsF8mEd6Zw7uHO3zSzA" supplier="_VHrmMF8mEd6Zw7uHO3zSzA" client="_rNzcsF8OEd6Zw7uHO3zSzA"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Sy4nIF8oEd6Zw7uHO3zSzA" name="jmapps"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_dcUD8F8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_xntLMF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_fKljoF8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_w17wAF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YUGiEF8qEd6Zw7uHO3zSzA" name="Contact"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cUQk0F8qEd6Zw7uHO3zSzA" name="ChatPanel"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_eJ-JQF8qEd6Zw7uHO3zSzA" memberEnd="_eJ-JQV8qEd6Zw7uHO3zSzA _eJ-JRF8qEd6Zw7uHO3zSzA">
+    <ownedEnd xmi:id="_eJ-JQV8qEd6Zw7uHO3zSzA" name="src" type="_w17wAF6kEd6b3PniR-hF6Q" association="_eJ-JQF8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eJ-JQ18qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eJ-JQl8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_eJ-JRF8qEd6Zw7uHO3zSzA" name="dst" type="_cUQk0F8qEd6Zw7uHO3zSzA" association="_eJ-JQF8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eJ-JRl8qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eJ-JRV8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_g1VjUF8qEd6Zw7uHO3zSzA" name="FriendsList">
+    <generalization xmi:id="_8nfboF8qEd6Zw7uHO3zSzA" general="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hmghkF8qEd6Zw7uHO3zSzA" memberEnd="_hmghkV8qEd6Zw7uHO3zSzA _hmghlF8qEd6Zw7uHO3zSzA">
+    <ownedEnd xmi:id="_hmghkV8qEd6Zw7uHO3zSzA" name="src" type="_cUQk0F8qEd6Zw7uHO3zSzA" association="_hmghkF8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hmghk18qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hmghkl8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_hmghlF8qEd6Zw7uHO3zSzA" name="dst" type="_g1VjUF8qEd6Zw7uHO3zSzA" association="_hmghkF8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hmghll8qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hmghlV8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_r3WfQF8qEd6Zw7uHO3zSzA" name="ICommandListener" clientDependency="_FcshwF8rEd6Zw7uHO3zSzA">
+    <ownedOperation xmi:id="_Ar0MsF8rEd6Zw7uHO3zSzA" name="receiveCommand">
+      <ownedParameter xmi:id="_BvBWIF8rEd6Zw7uHO3zSzA" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ydzO0F8qEd6Zw7uHO3zSzA" name="FriendLabel"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_zcr48F8qEd6Zw7uHO3zSzA" memberEnd="_zcr48V8qEd6Zw7uHO3zSzA _zcr49F8qEd6Zw7uHO3zSzA">
+    <ownedEnd xmi:id="_zcr48V8qEd6Zw7uHO3zSzA" name="src" type="_g1VjUF8qEd6Zw7uHO3zSzA" association="_zcr48F8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zcr4818qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zcr48l8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_zcr49F8qEd6Zw7uHO3zSzA" name="dst" type="_ydzO0F8qEd6Zw7uHO3zSzA" aggregation="composite" association="_zcr48F8qEd6Zw7uHO3zSzA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zcr49l8qEd6Zw7uHO3zSzA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zcr49V8qEd6Zw7uHO3zSzA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_FcshwF8rEd6Zw7uHO3zSzA" supplier="_CWWSwF6lEd6b3PniR-hF6Q" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_00KP8F8vEd6Zw7uHO3zSzA" name="ServerMain"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_v3kvQF8xEd6Zw7uHO3zSzA" name="AddFriendCommand">
+    <generalization xmi:id="_x9_CIF8xEd6Zw7uHO3zSzA" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+  </packagedElement>
 </uml:Package>
