@@ -3,12 +3,17 @@ package videochat.client;
 import java.awt.BorderLayout;
 import java.awt.MenuBar;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
+import com.sun.media.util.JMFI18N;
+
+import videochat.client.connection.ClientConnection;
 import videochat.client.ui.SelectServerDialog;
 import videochat.client.ui.UserPanel;
 
 import jmapps.ui.JMDialog;
 import jmapps.ui.JMFrame;
+import jmapps.ui.MessageDialog;
 
 public class ClientMainWindow extends JMFrame {
 
@@ -16,10 +21,9 @@ public class ClientMainWindow extends JMFrame {
 	* 
 	*/
 	private static final long serialVersionUID = -67910795642719141L;
+	private ClientConnection connection;
 	
 	protected UserPanel panelContent;
-	private String serverAddr;
-	private String userName;
 	public ClientMainWindow () {
 		super ( null, "videochat" );
 	}
@@ -43,8 +47,14 @@ public class ClientMainWindow extends JMFrame {
 		SelectServerDialog dlg = new SelectServerDialog(this);
         dlg.setVisible(true);
         if (dlg.getAction().equals(JMDialog.ACTION_OK)){
-        	serverAddr = dlg.getServer();
-        	userName = dlg.getName();
+        	try {
+        		connection = new ClientConnection(dlg.getServer(), dlg.getName());
+        	} catch (Exception e) {
+				e.printStackTrace();
+				MessageDialog.createErrorDialog ( this,
+						TextI18n.getText("error.openconnection") + dlg.getServer() );
+				this.dispose();
+			}
         } else {
         	this.dispose();
         }
@@ -68,7 +78,8 @@ public class ClientMainWindow extends JMFrame {
     @Override
     public void windowClosing ( WindowEvent event ) {
     	panelContent.killCurrentPlayer();
-        this.dispose ();
+    	connection.stopConnection();
+        this.dispose();
     }
     
 	/**

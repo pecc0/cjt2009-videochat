@@ -15,7 +15,7 @@ import javax.swing.BoxLayout;
 import videochat.shared.commands.AddFriendCommand;
 import videochat.shared.commands.ICommand;
 import videochat.shared.commands.ICommandListener;
-import videochat.shared.contact.Contact;
+import videochat.shared.contact.ContactInfo;
 
 import jmapps.ui.JMPanel;
 
@@ -80,7 +80,7 @@ public class FriendsList extends JMPanel implements ICommandListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 4067234392124087562L;
-	HashSet<Contact> friends = new HashSet<Contact>();
+	HashSet<ContactInfo> friends = new HashSet<ContactInfo>();
 	public FriendsList(Frame rFrame) {
 		super();
 		init(rFrame);

@@ -16,7 +16,7 @@ import videochat.shared.commands.ICommandListener;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public class Contact implements Serializable {
+public class ContactInfo implements Serializable {
 	/**
 	 * 
 	 */

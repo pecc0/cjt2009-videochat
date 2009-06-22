@@ -20,6 +20,8 @@ import javax.media.protocol.CaptureDevice;
 import javax.media.protocol.DataSource;
 import javax.media.protocol.PushBufferDataSource;
 
+import videochat.client.TextI18n;
+
 import com.sun.media.util.JMFI18N;
 
 import jmapps.jmstudio.CaptureControlsDialog;
@@ -68,7 +70,7 @@ public class UserPanel extends JMPanel implements ControllerListener, ItemListen
 		rootFrame = rFrame;
 		rightPanel = new JMPanel(new BorderLayout());
 		leftPanel = new JMPanel(new BorderLayout());
-		videoOnOff = new Checkbox("Capture");
+		videoOnOff = new Checkbox(TextI18n.getText("capture"));
 		
 		messageText = new TextArea();
 		messageText.setMinimumSize(new Dimension(200, 50));

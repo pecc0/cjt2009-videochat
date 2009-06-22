@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package videochat.client.ui;
 
 import java.awt.Frame;
@@ -18,9 +16,7 @@ import jmapps.ui.JMPanel;
  */
 public class ChatPanel extends JMPanel {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3836423415880048340L;
 	
 	public ChatPanel(Frame rFrame) {

@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SpringLayout;
 
+import videochat.client.TextI18n;
+
 import jmapps.ui.JMDialog;
 import jmapps.ui.JMPanel;
 
@@ -34,13 +36,13 @@ public class SelectServerDialog extends JMDialog  implements ActionListener{
 	private TextField userName = null;
 	private Button okButton = null;
 	public SelectServerDialog(Frame parentFrame){
-		super(parentFrame, "Select Server", true);
+		super(parentFrame, TextI18n.getText("selectserver"), true);
 		serverAddress = new TextField("localhost");
 		userName = new TextField();
-		okButton = new Button("OK");
+		okButton = new Button(TextI18n.getText("ok"));
 		okButton.addActionListener(this);
-		Label l1 = new Label("Server address");
-		Label l2 = new Label("Name");
+		Label l1 = new Label(TextI18n.getText("serveraddress"));
+		Label l2 = new Label(TextI18n.getText("name"));
 		SpringLayout layout = new SpringLayout(); 
 		JMPanel panel = new JMPanel(layout);
 		

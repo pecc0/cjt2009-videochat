@@ -1,7 +1,7 @@
 
 package videochat.shared.commands;
 
-import videochat.shared.contact.Contact;
+import videochat.shared.contact.ContactInfo;
 
 /**
  * TODO - DOCUMENT ME
@@ -14,11 +14,11 @@ import videochat.shared.contact.Contact;
 public class AddFriendCommand implements ICommand {
 
 	private static final long serialVersionUID = 3046234845370167608L;
-	private Contact friend;
-	public void setFriend(Contact friend) {
+	private ContactInfo friend;
+	public void setFriend(ContactInfo friend) {
 		this.friend = friend;
 	}
-	public Contact getFriend() {
+	public ContactInfo getFriend() {
 		return friend;
 	}
 }
