@@ -1,8 +1,13 @@
-package videochat.ui;
+package videochat.client.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Checkbox;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.LayoutManager;
+import java.awt.TextArea;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 
 import javax.media.CaptureDeviceInfo;
@@ -26,7 +31,15 @@ import jmapps.util.CDSWrapper;
 import jmapps.util.JMAppsCfg;
 import jmapps.util.JMFUtils;
 
-public class UserPanel extends JMPanel implements ControllerListener {
+/**
+ * A panel that contain the message text and the user avatar (media player) 
+ *
+ * @author "ppetkov" (Jun 21, 2009)
+ *
+ * <br><b>History:</b> <br>
+ * Jun 21, 2009 "ppetkov" created <br>
+ */
+public class UserPanel extends JMPanel implements ControllerListener, ItemListener {
 	/**
 	 * 
 	 */
@@ -37,6 +50,10 @@ public class UserPanel extends JMPanel implements ControllerListener {
 	private DataSource              dataSourceCurrent = null;
 	private CaptureControlsDialog   dlgCaptureControls = null;
 	protected VideoPanel        panelVideo = null;
+	protected Checkbox videoOnOff = null;
+	private TextArea messageText = null;
+	private JMPanel rightPanel = null;
+	private JMPanel leftPanel = null;
 	protected MediaPlayer		mediaPlayerCurrent; 
 	private Frame rootFrame;
 	public UserPanel(Frame rFrame) {
@@ -49,12 +66,26 @@ public class UserPanel extends JMPanel implements ControllerListener {
 	}
 	private void init(Frame rFrame) {
 		rootFrame = rFrame;
-		captureMedia();
+		rightPanel = new JMPanel(new BorderLayout());
+		leftPanel = new JMPanel(new BorderLayout());
+		videoOnOff = new Checkbox("Capture");
+		
+		messageText = new TextArea();
+		messageText.setMinimumSize(new Dimension(200, 50));
+		messageText.setPreferredSize(messageText.getMinimumSize());
+		
+		rightPanel.add(videoOnOff, BorderLayout.SOUTH);
+		leftPanel.add(messageText, BorderLayout.CENTER);
+		
+		this.add(rightPanel, BorderLayout.EAST);
+		this.add(leftPanel, BorderLayout.CENTER);
+		videoOnOff.addItemListener(this);
+		
 	}
     protected void processRealizeComplete ( RealizeCompleteEvent event ) {
     	panelVideo = new VideoPanel ( mediaPlayerCurrent );
         panelVideo.setZoom ( 1.0 );
-        this.add ( panelVideo, BorderLayout.EAST);
+        rightPanel.add ( panelVideo, BorderLayout.NORTH);
         mediaPlayerCurrent.prefetch();
         rootFrame.pack();
     }
@@ -76,6 +107,11 @@ public class UserPanel extends JMPanel implements ControllerListener {
         
         if (mediaPlayerCurrent != null) {
         	mediaPlayerCurrent.close();
+        }
+        if (panelVideo != null) {
+        	rightPanel.remove(panelVideo);
+        	panelVideo = null;
+        	rootFrame.pack();
         }
     }
 
@@ -127,7 +163,7 @@ public class UserPanel extends JMPanel implements ControllerListener {
 		nameCaptureDeviceVideo = null;
 		
 		dialogCapture = new CaptureDialog ( rootFrame, cfgJMApps );
-		dialogCapture.show();
+		dialogCapture.setVisible(true);
 		if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL) {
 			return;
 		}
@@ -186,5 +222,18 @@ public class UserPanel extends JMPanel implements ControllerListener {
         } else if ( event instanceof PrefetchCompleteEvent ) {
             processPrefetchComplete ( (PrefetchCompleteEvent) event );
         }
+	}
+	/* (non-Javadoc)
+	 * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
+	 */
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getSource() == videoOnOff){
+			if (videoOnOff.getState()){
+				captureMedia();
+			} else {
+				killCurrentPlayer();
+			}
+		}
 	}
 }

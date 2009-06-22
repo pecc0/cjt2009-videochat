@@ -1,14 +1,16 @@
-package videochat;
+package videochat.client;
 
 import java.awt.BorderLayout;
 import java.awt.MenuBar;
 import java.awt.event.WindowEvent;
 
-import videochat.ui.UserPanel;
+import videochat.client.ui.SelectServerDialog;
+import videochat.client.ui.UserPanel;
 
+import jmapps.ui.JMDialog;
 import jmapps.ui.JMFrame;
 
-public class Client extends JMFrame {
+public class ClientMainWindow extends JMFrame {
 
 	/**
 	* 
@@ -16,8 +18,9 @@ public class Client extends JMFrame {
 	private static final long serialVersionUID = -67910795642719141L;
 	
 	protected UserPanel panelContent;
-	
-	public Client () {
+	private String serverAddr;
+	private String userName;
+	public ClientMainWindow () {
 		super ( null, "videochat" );
 	}
 	
@@ -30,7 +33,23 @@ public class Client extends JMFrame {
     public void pack () {
         super.pack ();
     }
-
+	
+	/* (non-Javadoc)
+	 * @see jmapps.ui.JMFrame#windowOpened(java.awt.event.WindowEvent)
+	 */
+	@Override
+	public void windowOpened(WindowEvent event) {
+		super.windowOpened(event);
+		SelectServerDialog dlg = new SelectServerDialog(this);
+        dlg.setVisible(true);
+        if (dlg.getAction().equals(JMDialog.ACTION_OK)){
+        	serverAddr = dlg.getServer();
+        	userName = dlg.getName();
+        } else {
+        	this.dispose();
+        }
+	}
+	
     @Override
     protected void initFrame () {
     	MenuBar         menu;
@@ -43,6 +62,7 @@ public class Client extends JMFrame {
         //panelContent.addContainerListener( this );
         
         super.initFrame ();
+        
     }
     
     @Override
@@ -55,7 +75,7 @@ public class Client extends JMFrame {
 	* @param args
 	*/
 	public static void main(String[] args) {
-		Client c = new Client();
+		ClientMainWindow c = new ClientMainWindow();
 		c.setVisible( true );
         c.invalidate();
         c.pack();
