@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package videochat.client;
 
 import java.util.Locale;

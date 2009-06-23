@@ -3,27 +3,39 @@ package videochat.client;
 import java.awt.BorderLayout;
 import java.awt.MenuBar;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
+import java.io.Serializable;
+import java.util.Hashtable;
 
-import com.sun.media.util.JMFI18N;
-
+import videochat.client.commands.ClientCommandManager;
 import videochat.client.connection.ClientConnection;
+import videochat.client.ui.ChatPanel;
 import videochat.client.ui.SelectServerDialog;
 import videochat.client.ui.UserPanel;
+import videochat.shared.commands.CommandFactory;
+import videochat.shared.commands.LoginCommand;
 
 import jmapps.ui.JMDialog;
 import jmapps.ui.JMFrame;
 import jmapps.ui.MessageDialog;
-
+/**
+ * 
+ * The client main frame
+ *
+ * @author "ppetkov" (Jun 21, 2009)
+ *
+ * <br><b>History:</b> <br>
+ * Jun 21, 2009 "ppetkov" created <br>
+ */
 public class ClientMainWindow extends JMFrame {
 
 	/**
 	* 
 	*/
 	private static final long serialVersionUID = -67910795642719141L;
-	private ClientConnection connection;
+	//private ClientConnection connection;
 	
 	protected UserPanel panelContent;
+	protected ChatPanel chatPanel;
 	public ClientMainWindow () {
 		super ( null, "videochat" );
 	}
@@ -48,7 +60,12 @@ public class ClientMainWindow extends JMFrame {
         dlg.setVisible(true);
         if (dlg.getAction().equals(JMDialog.ACTION_OK)){
         	try {
-        		connection = new ClientConnection(dlg.getServer(), dlg.getName());
+        		ClientConnection connection = new ClientConnection(dlg.getServer(), dlg.getUserName());
+        		ClientCommandManager.getInst().setConnection(connection);
+        		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
+        		params.put(LoginCommand.userNameKey, dlg.getUserName());
+        		ClientCommandManager.getInst().sendCommand(CommandFactory.createCommand("login", params));
+        		
         	} catch (Exception e) {
 				e.printStackTrace();
 				MessageDialog.createErrorDialog ( this,
@@ -69,6 +86,8 @@ public class ClientMainWindow extends JMFrame {
         this.setLayout ( new BorderLayout() );
         panelContent = new UserPanel (this, new BorderLayout() );
         this.add ( panelContent, BorderLayout.SOUTH );
+        chatPanel = new ChatPanel(this);
+        this.add(chatPanel, BorderLayout.CENTER);
         //panelContent.addContainerListener( this );
         
         super.initFrame ();
@@ -78,7 +97,7 @@ public class ClientMainWindow extends JMFrame {
     @Override
     public void windowClosing ( WindowEvent event ) {
     	panelContent.killCurrentPlayer();
-    	connection.stopConnection();
+    	ClientCommandManager.getInst().getConnection().stopConnection();
         this.dispose();
     }
     

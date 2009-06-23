@@ -1,8 +1,8 @@
 
 package videochat.client.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
-import java.awt.LayoutManager;
 
 import jmapps.ui.JMPanel;
 
@@ -15,20 +15,15 @@ import jmapps.ui.JMPanel;
  * Jun 22, 2009 "ppetkov" created <br>
  */
 public class ChatPanel extends JMPanel {
-
-
 	private static final long serialVersionUID = -3836423415880048340L;
 	
+	private FriendsList friendsList;
 	public ChatPanel(Frame rFrame) {
-		super();
+		super(new BorderLayout());
 		init(rFrame);
 	}
-	public ChatPanel(Frame rFrame, LayoutManager managerLayout) {
-		super(managerLayout);
-		init(rFrame);
-	}
-	
 	private void init(Frame rFrame) {
-		
+		friendsList = new FriendsList(rFrame);
+		this.add(friendsList, BorderLayout.EAST);
 	}
 }

@@ -11,6 +11,7 @@ package videochat.shared.commands;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public interface ICommandListener {
-	void receiveCommand(ICommand command);
+public interface IConnectionListener {
+	void receiveCommand(Command command);
+	void connectionClosed();
 }

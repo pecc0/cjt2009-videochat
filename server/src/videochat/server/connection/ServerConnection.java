@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import videochat.shared.commands.ICommand;
 import videochat.shared.connection.Connection;
 
 /**
@@ -30,15 +29,7 @@ public class ServerConnection extends Connection {
 	public ServerConnection(Socket socket) throws IOException{
 		super(socket);
 	}
-	/* (non-Javadoc)
-	 * @see videochat.shared.connection.Connection#onCommand(videochat.shared.commands.ICommand)
-	 */
-	@Override
-	protected void onCommand(ICommand command) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	
 }
 

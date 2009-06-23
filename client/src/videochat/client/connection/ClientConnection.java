@@ -6,7 +6,7 @@ package videochat.client.connection;
 import java.io.IOException;
 import java.net.Socket;
 
-import videochat.shared.commands.ICommand;
+import videochat.shared.commands.Command;
 import videochat.shared.connection.Connection;
 
 
@@ -31,14 +31,5 @@ public class ClientConnection extends Connection {
 		super(new Socket(server, 4444));
 	}
 	
-
-	/* (non-Javadoc)
-	 * @see videochat.shared.connection.Connection#onCommand(videochat.shared.commands.ICommand)
-	 */
-	@Override
-	protected void onCommand(ICommand command) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

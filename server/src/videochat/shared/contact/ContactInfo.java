@@ -4,9 +4,6 @@
 package videochat.shared.contact;
 
 import java.io.Serializable;
-import java.util.List;
-
-import videochat.shared.commands.ICommandListener;
 
 /**
  * TODO - DOCUMENT ME
@@ -17,18 +14,10 @@ import videochat.shared.commands.ICommandListener;
  * Jun 22, 2009 "ppetkov" created <br>
  */
 public class ContactInfo implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7746264353653355554L;
 	private String name;
-	private List<ICommandListener> commandListeners;
-	public void addCommandListener(ICommandListener listener){
-		commandListeners.add(listener);
-	}
-	public void removeCommandListener(ICommandListener listener){
-		commandListeners.remove(listener);
-	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

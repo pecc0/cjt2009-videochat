@@ -12,9 +12,10 @@ import java.util.HashSet;
 
 import javax.swing.BoxLayout;
 
+import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.AddFriendCommand;
-import videochat.shared.commands.ICommand;
-import videochat.shared.commands.ICommandListener;
+import videochat.shared.commands.Command;
+import videochat.shared.commands.IConnectionListener;
 import videochat.shared.contact.ContactInfo;
 
 import jmapps.ui.JMPanel;
@@ -50,18 +51,18 @@ class MyCanvas extends Canvas {
 	}
 }
 
-class FriendLabel extends JMPanel implements ICommandListener {
+class FriendLabel extends JMPanel implements IConnectionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4825796395691254797L;
 	private MyCanvas can;
 	private Label userName;
-	FriendLabel(){
+	FriendLabel(ContactInfo info){
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		can = new MyCanvas();
-		userName = new Label();
-		
+		userName = new Label(info.getName());
+		ClientCommandManager.getInst().addConnectionCommandListener(this);
 		this.add(can);
 		this.add(userName);
 	}
@@ -70,12 +71,20 @@ class FriendLabel extends JMPanel implements ICommandListener {
 	 * @see videochat.commands.ICommandListener#receiveCommand(videochat.commands.ICommand)
 	 */
 	@Override
-	public void receiveCommand(ICommand command) {
+	public void receiveCommand(Command command) {
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see videochat.shared.commands.IConnectionListener#connectionClosed()
+	 */
+	@Override
+	public void connectionClosed() {
 		
 	}
 	
 }
-public class FriendsList extends JMPanel implements ICommandListener {
+public class FriendsList extends JMPanel implements IConnectionListener {
 	/**
 	 * 
 	 */
@@ -87,16 +96,26 @@ public class FriendsList extends JMPanel implements ICommandListener {
 	}
 	private void init(Frame rFrame) {
 		super.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
+		ClientCommandManager.getInst().addConnectionCommandListener(this);
 	}
 	/* (non-Javadoc)
 	 * @see videochat.commands.ICommandListener#receiveCommand(videochat.commands.ICommand)
 	 */
 	@Override
-	public void receiveCommand(ICommand command) {
+	public void receiveCommand(Command command) {
 		if (command instanceof AddFriendCommand){
-			
+			AddFriendCommand afc = (AddFriendCommand) command;
+			FriendLabel item = new FriendLabel(afc.getFriendInfo());
+			this.add(item);
+			this.validate();
 		}
+	}
+	/* (non-Javadoc)
+	 * @see videochat.shared.commands.IConnectionListener#connectionClosed()
+	 */
+	@Override
+	public void connectionClosed() {
+		
 	}
 	
 }

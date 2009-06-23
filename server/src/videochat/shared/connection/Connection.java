@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
-import videochat.shared.commands.ICommand;
-import videochat.shared.commands.LoginCommand;
+import videochat.shared.commands.Command;
+import videochat.shared.commands.IConnectionListener;
 
 /**
  * Base connection-contains functionality used for both server and client connections
@@ -19,10 +21,13 @@ import videochat.shared.commands.LoginCommand;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public abstract class Connection implements Runnable {
+public class Connection implements Runnable {
 	private ObjectOutputStream writer;
 	private ObjectInputStream reader;
 	private Socket clientSocket;
+	private ArrayList<IConnectionListener> listeners;
+	private Thread thread;
+	//private LinkedList<ICommand> commandsQueue;
 	/**
 	 * Constructs new connection. </br>
 	 * Port: 4444
@@ -33,40 +38,20 @@ public abstract class Connection implements Runnable {
 		clientSocket = aSocket;
 		writer = new ObjectOutputStream(clientSocket.getOutputStream());
 		reader = new ObjectInputStream(clientSocket.getInputStream());
-		new Thread(this).start();
+		listeners = new ArrayList<IConnectionListener>();
+		//commandsQueue = new LinkedList<ICommand>();
+		thread = new Thread(this); 
+		thread.start();
 	}
 	
-	public void stopConnection(){
+	/**
+	 * Closes the connection
+	 */
+	public void stopConnection() {
 		
 		try {
 			reader.close();
 		} catch (IOException e) {
-		}
-		
-	}
-	
-	protected abstract void onCommand(ICommand command);
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Runnable#run()
-	 */
-	@Override
-	public void run() {
-		ICommand input;
-		try {
-			while((input = (ICommand) reader.readObject()) != null){
-				//TODO remove
-				if (input instanceof LoginCommand){
-					System.out.println(input);
-				}
-				onCommand(input);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 		try {
 			writer.close();
@@ -77,6 +62,73 @@ public abstract class Connection implements Runnable {
 			clientSocket.close();
 		} catch (IOException e) {
 		}
+	}
+	/**
+	 * Send a command through this connection
+	 * @param c
+	 */
+	public void sendCommand(Command c) {
+		//commandsQueue.addLast(c);
+		try {
+			writer.writeObject(c);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Adds a command listener.
+	 * Nothing is done if the listener has already been added.
+	 * @see #removeCommandListener(IConnectionListener)
+	 * @param l the listener
+	 */
+	public void addCommandListener(IConnectionListener l){
+		synchronized (listeners) {
+			if (!listeners.contains(l)) {
+				listeners.add(l);
+			}
+		}
+	}
+	/**
+	 * Removes the command listener that is equal to l
+	 * @see #addCommandListener(IConnectionListener)
+	 * @param l a listener
+	 */
+	public void removeCommandListener(IConnectionListener l){
+		synchronized (listeners) {
+			listeners.remove(l);
+		}
+	}
+	
+	//protected abstract void onCommand(ICommand command);
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		Command input;
+		try {
+			while((input = (Command) reader.readObject()) != null) {
+				synchronized (listeners) {
+					int size = listeners.size();
+					for (int i = 0; i < size; i++){
+						listeners.get(i).receiveCommand(input);
+					}
+				}
+			}
+		}
+		catch (Exception e) {
+			if (e instanceof java.io.EOFException || e instanceof java.net.SocketException) {
+				System.out.println("Connection closed");
+			} else {
+				e.printStackTrace();
+			}
+		}
+		for (IConnectionListener l:listeners){
+			l.connectionClosed();
+		}
+		stopConnection();
 	}
 	
 }

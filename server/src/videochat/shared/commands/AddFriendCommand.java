@@ -1,24 +1,28 @@
 
 package videochat.shared.commands;
 
+import java.io.Serializable;
+import java.util.Hashtable;
+
 import videochat.shared.contact.ContactInfo;
 
 /**
- * TODO - DOCUMENT ME
+ * Command for adding a friend to the friends list. 
+ * Contains the friend info 
  *
  * @author "ppetkov" (Jun 22, 2009)
  *
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public class AddFriendCommand implements ICommand {
-
+public class AddFriendCommand extends Command {
 	private static final long serialVersionUID = 3046234845370167608L;
-	private ContactInfo friend;
-	public void setFriend(ContactInfo friend) {
-		this.friend = friend;
+	public final static String infoKey = "info";
+	public AddFriendCommand(Hashtable<String, Serializable> params) {
+		super(params);
 	}
-	public ContactInfo getFriend() {
-		return friend;
+	
+	public ContactInfo getFriendInfo(){
+		return (ContactInfo)getParameters().get(infoKey);
 	}
 }
