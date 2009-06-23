@@ -4,13 +4,15 @@
 package videochat.client.ui;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.util.HashSet;
-
-import javax.swing.BoxLayout;
 
 import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.AddFriendCommand;
@@ -37,6 +39,7 @@ class MyCanvas extends Canvas {
 	private Image image;
 	public MyCanvas() {
 		super();
+		setSize(new Dimension(128, 128));
 	}
 	
 	public void setImage(Image i) {
@@ -45,6 +48,8 @@ class MyCanvas extends Canvas {
 	}
 	
 	public void paint(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 128, 128);
 		if (image != null) {
 			g.drawImage(image, 0,0, this);
 		}
@@ -59,12 +64,15 @@ class FriendLabel extends JMPanel implements IConnectionListener {
 	private MyCanvas can;
 	private Label userName;
 	FriendLabel(ContactInfo info){
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		can = new MyCanvas();
-		userName = new Label(info.getName());
+		userName = new Label("name: " + info.getName());
 		ClientCommandManager.getInst().addConnectionCommandListener(this);
 		this.add(can);
 		this.add(userName);
+		this.setEtchedBorder();
+		Dimension dim = new Dimension(190, 170);
+		this.setPreferredSize(dim);
 	}
 	
 	/* (non-Javadoc)
@@ -85,18 +93,20 @@ class FriendLabel extends JMPanel implements IConnectionListener {
 	
 }
 public class FriendsList extends JMPanel implements IConnectionListener {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4067234392124087562L;
 	HashSet<ContactInfo> friends = new HashSet<ContactInfo>();
+	Frame rootFrame;
 	public FriendsList(Frame rFrame) {
 		super();
 		init(rFrame);
 	}
 	private void init(Frame rFrame) {
-		super.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		super.setLayout(new GridLayout(0,1));
+		//this.add(new JMPanel());
 		ClientCommandManager.getInst().addConnectionCommandListener(this);
+		//this.setPreferredSize(new Dimension(200, 200));
+		this.setLoweredBorder();
+		rootFrame = rFrame;
 	}
 	/* (non-Javadoc)
 	 * @see videochat.commands.ICommandListener#receiveCommand(videochat.commands.ICommand)
@@ -105,9 +115,12 @@ public class FriendsList extends JMPanel implements IConnectionListener {
 	public void receiveCommand(Command command) {
 		if (command instanceof AddFriendCommand){
 			AddFriendCommand afc = (AddFriendCommand) command;
+			
 			FriendLabel item = new FriendLabel(afc.getFriendInfo());
 			this.add(item);
-			this.validate();
+			//this.validate();
+			//rootFrame.pack();
+			this.getParent().getParent().validate();
 		}
 	}
 	/* (non-Javadoc)

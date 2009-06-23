@@ -24,7 +24,7 @@ public class ConnectionsManager {
 	 * This field is with default access because the 
 	 * classes from this package need access to it
 	 */
-	static HashSet<ConnectedClient> clients;
+	private static HashSet<ConnectedClient> clients;
 	
 	/**
 	 * This method starts listening on a certain socket.
@@ -46,7 +46,7 @@ public class ConnectionsManager {
 			    clientSocket = serverSocket.accept();
 			    
 			    ServerConnection connection = new ServerConnection(clientSocket);
-			    new ConnectedClient(connection);
+			    new ConnectedClient(connection, clients);
 			    
 			} catch (IOException e) {
 			    System.out.println("Accept failed: 4444");

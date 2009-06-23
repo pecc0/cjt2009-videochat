@@ -84,7 +84,7 @@ public class ClientMainWindow extends JMFrame {
     	menu = new MenuBar ();
         this.setMenuBar ( menu );
         this.setLayout ( new BorderLayout() );
-        panelContent = new UserPanel (this, new BorderLayout() );
+        panelContent = new UserPanel (this);
         this.add ( panelContent, BorderLayout.SOUTH );
         chatPanel = new ChatPanel(this);
         this.add(chatPanel, BorderLayout.CENTER);

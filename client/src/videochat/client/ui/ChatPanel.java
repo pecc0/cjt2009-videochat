@@ -2,7 +2,12 @@
 package videochat.client.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.ScrollPane;
+import java.awt.Scrollbar;
+
+import javax.swing.JScrollPane;
 
 import jmapps.ui.JMPanel;
 
@@ -24,6 +29,12 @@ public class ChatPanel extends JMPanel {
 	}
 	private void init(Frame rFrame) {
 		friendsList = new FriendsList(rFrame);
-		this.add(friendsList, BorderLayout.EAST);
+		JMPanel panel = new JMPanel();
+		panel.setLoweredBorder();
+		panel.add(friendsList);
+		JScrollPane pane = new JScrollPane(panel);
+		
+		pane.setPreferredSize(new Dimension(230,220));
+		this.add(pane, BorderLayout.EAST);
 	}
 }

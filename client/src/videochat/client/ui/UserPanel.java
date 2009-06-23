@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.TextArea;
 import java.awt.event.ItemEvent;
@@ -53,6 +55,7 @@ public class UserPanel extends JMPanel implements ControllerListener, ItemListen
 	private CaptureControlsDialog   dlgCaptureControls = null;
 	protected VideoPanel        panelVideo = null;
 	protected Checkbox videoOnOff = null;
+	private Label nameLabel;
 	private TextArea messageText = null;
 	private JMPanel rightPanel = null;
 	private JMPanel leftPanel = null;
@@ -62,26 +65,32 @@ public class UserPanel extends JMPanel implements ControllerListener, ItemListen
 		super();
 		init(rFrame);
 	}
-	public UserPanel(Frame rFrame, LayoutManager managerLayout) {
-		super(managerLayout);
-		init(rFrame);
-	}
+	
 	private void init(Frame rFrame) {
+		
+		this.setLayout(new BorderLayout());
+		
 		rootFrame = rFrame;
-		rightPanel = new JMPanel(new BorderLayout());
+		rightPanel = new JMPanel();
 		leftPanel = new JMPanel(new BorderLayout());
 		videoOnOff = new Checkbox(TextI18n.getText("capture"));
+		nameLabel = new Label("name");
+		
+		JMPanel panel = new JMPanel(new GridLayout(0,1));
+		panel.add(nameLabel);
+		panel.add(videoOnOff );
 		
 		messageText = new TextArea();
 		messageText.setMinimumSize(new Dimension(200, 50));
 		messageText.setPreferredSize(messageText.getMinimumSize());
 		
-		rightPanel.add(videoOnOff, BorderLayout.SOUTH);
+		rightPanel.add(panel, BorderLayout.SOUTH);
 		leftPanel.add(messageText, BorderLayout.CENTER);
 		
 		this.add(rightPanel, BorderLayout.EAST);
 		this.add(leftPanel, BorderLayout.CENTER);
 		videoOnOff.addItemListener(this);
+		
 		
 	}
     protected void processRealizeComplete ( RealizeCompleteEvent event ) {
@@ -89,7 +98,7 @@ public class UserPanel extends JMPanel implements ControllerListener, ItemListen
         panelVideo.setZoom ( 1.0 );
         rightPanel.add ( panelVideo, BorderLayout.NORTH);
         mediaPlayerCurrent.prefetch();
-        rootFrame.pack();
+        getParent().validate();
     }
     
     protected void processPrefetchComplete ( PrefetchCompleteEvent event ) {
@@ -113,7 +122,7 @@ public class UserPanel extends JMPanel implements ControllerListener, ItemListen
         if (panelVideo != null) {
         	rightPanel.remove(panelVideo);
         	panelVideo = null;
-        	rootFrame.pack();
+        	getParent().validate();
         }
     }
 

@@ -2,6 +2,7 @@
 package videochat.server.connection;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Hashtable;
 
 import videochat.shared.commands.AddFriendCommand;
@@ -24,9 +25,11 @@ public class ConnectedClient implements IConnectionListener{
 	private Connection connection;
 	private String name;
 	private ContactInfo contactInfo;
-	ConnectedClient(Connection c){
+	private HashSet<ConnectedClient> clientsSet;
+	public ConnectedClient(Connection c, HashSet<ConnectedClient> clientsSet){
 		connection = c;
 		connection.addCommandListener(this);
+		this.clientsSet = clientsSet;
 		name = null;
 	}
 	/* (non-Javadoc)
@@ -36,7 +39,7 @@ public class ConnectedClient implements IConnectionListener{
 	public void receiveCommand(Command command) {
 		if (command instanceof LoginCommand){
 			name = ((LoginCommand)command).getUserName();
-			ConnectionsManager.clients.add(this);
+			clientsSet.add(this);
 			contactInfo = new ContactInfo();
 			contactInfo.setName(name);
 			//init the rest of the contact info fields
@@ -44,7 +47,14 @@ public class ConnectedClient implements IConnectionListener{
 			Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
 			params.put(AddFriendCommand.infoKey, contactInfo);
 			System.out.println("Sending add friend to all " + contactInfo.getName());
-			ConnectionsManager.sendToAll(CommandFactory.createCommand("addfriend", params));
+			sendToAllOther(CommandFactory.createCommand("addfriend", params));
+			for (ConnectedClient client: clientsSet){
+				if (!this.equals(client)){
+					params = new Hashtable<String, Serializable>();
+					params.put(AddFriendCommand.infoKey, client.contactInfo);
+					sendCommand(CommandFactory.createCommand("addfriend", params));
+				}
+			}
 		}
 	}
 	
@@ -53,7 +63,7 @@ public class ConnectedClient implements IConnectionListener{
 	 */
 	@Override
 	public void connectionClosed() {
-		ConnectionsManager.clients.remove(this);
+		clientsSet.remove(this);
 	}
 	
 	/* (non-Javadoc)
@@ -82,6 +92,14 @@ public class ConnectedClient implements IConnectionListener{
 	
 	public void sendCommand(Command c){
 		connection.sendCommand(c);
+	}
+	
+	public void sendToAllOther(Command c){
+		for (ConnectedClient client: clientsSet){
+			if (!this.equals(client)){
+				client.sendCommand(c);
+			}
+		}
 	}
 	
 }
