@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import videochat.shared.commands.Command;
 import videochat.shared.commands.IConnectionListener;
@@ -27,6 +26,7 @@ public class Connection implements Runnable {
 	private Socket clientSocket;
 	private ArrayList<IConnectionListener> listeners;
 	private Thread thread;
+	private boolean stopped;
 	//private LinkedList<ICommand> commandsQueue;
 	/**
 	 * Constructs new connection. </br>
@@ -42,13 +42,14 @@ public class Connection implements Runnable {
 		//commandsQueue = new LinkedList<ICommand>();
 		thread = new Thread(this); 
 		thread.start();
+		stopped = false;
 	}
 	
 	/**
 	 * Closes the connection
 	 */
 	public void stopConnection() {
-		
+		stopped = true;
 		try {
 			reader.close();
 		} catch (IOException e) {
@@ -77,12 +78,12 @@ public class Connection implements Runnable {
 	}
 	
 	/**
-	 * Adds a command listener.
+	 * Adds a connection listener.
 	 * Nothing is done if the listener has already been added.
-	 * @see #removeCommandListener(IConnectionListener)
+	 * @see #removeConnectionListener(IConnectionListener)
 	 * @param l the listener
 	 */
-	public void addCommandListener(IConnectionListener l){
+	public void addConnectionListener(IConnectionListener l){
 		synchronized (listeners) {
 			if (!listeners.contains(l)) {
 				listeners.add(l);
@@ -90,11 +91,11 @@ public class Connection implements Runnable {
 		}
 	}
 	/**
-	 * Removes the command listener that is equal to l
-	 * @see #addCommandListener(IConnectionListener)
+	 * Removes the connection listener that is equal to l
+	 * @see #addConnectionListener(IConnectionListener)
 	 * @param l a listener
 	 */
-	public void removeCommandListener(IConnectionListener l){
+	public void removeConnectionListener(IConnectionListener l){
 		synchronized (listeners) {
 			listeners.remove(l);
 		}
@@ -125,10 +126,14 @@ public class Connection implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		stopConnection();
 		for (IConnectionListener l:listeners){
 			l.connectionClosed();
 		}
-		stopConnection();
+	}
+
+	public boolean isStopped() {
+		return stopped;
 	}
 	
 }

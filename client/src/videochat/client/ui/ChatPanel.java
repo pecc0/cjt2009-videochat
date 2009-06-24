@@ -4,8 +4,6 @@ package videochat.client.ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.ScrollPane;
-import java.awt.Scrollbar;
 
 import javax.swing.JScrollPane;
 

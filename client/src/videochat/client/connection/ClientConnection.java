@@ -6,7 +6,6 @@ package videochat.client.connection;
 import java.io.IOException;
 import java.net.Socket;
 
-import videochat.shared.commands.Command;
 import videochat.shared.connection.Connection;
 
 

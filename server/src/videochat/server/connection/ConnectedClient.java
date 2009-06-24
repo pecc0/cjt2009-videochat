@@ -5,11 +5,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Hashtable;
 
-import videochat.shared.commands.AddFriendCommand;
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
 import videochat.shared.commands.IConnectionListener;
-import videochat.shared.commands.LoginCommand;
 import videochat.shared.connection.Connection;
 import videochat.shared.contact.ContactInfo;
 
@@ -21,41 +19,23 @@ import videochat.shared.contact.ContactInfo;
  * <br><b>History:</b> <br>
  * Jun 23, 2009 "ppetkov" created <br>
  */
-public class ConnectedClient implements IConnectionListener{
+public class ConnectedClient implements IConnectionListener {
 	private Connection connection;
 	private String name;
 	private ContactInfo contactInfo;
 	private HashSet<ConnectedClient> clientsSet;
 	public ConnectedClient(Connection c, HashSet<ConnectedClient> clientsSet){
 		connection = c;
-		connection.addCommandListener(this);
+		connection.addConnectionListener(this);
 		this.clientsSet = clientsSet;
-		name = null;
+		setName(null);
 	}
 	/* (non-Javadoc)
 	 * @see videochat.shared.commands.ICommandListener#receiveCommand(videochat.shared.commands.Command)
 	 */
 	@Override
 	public void receiveCommand(Command command) {
-		if (command instanceof LoginCommand){
-			name = ((LoginCommand)command).getUserName();
-			clientsSet.add(this);
-			contactInfo = new ContactInfo();
-			contactInfo.setName(name);
-			//init the rest of the contact info fields
-			
-			Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
-			params.put(AddFriendCommand.infoKey, contactInfo);
-			System.out.println("Sending add friend to all " + contactInfo.getName());
-			sendToAllOther(CommandFactory.createCommand("addfriend", params));
-			for (ConnectedClient client: clientsSet){
-				if (!this.equals(client)){
-					params = new Hashtable<String, Serializable>();
-					params.put(AddFriendCommand.infoKey, client.contactInfo);
-					sendCommand(CommandFactory.createCommand("addfriend", params));
-				}
-			}
-		}
+		command.execute(this);
 	}
 	
 	/* (non-Javadoc)
@@ -64,6 +44,12 @@ public class ConnectedClient implements IConnectionListener{
 	@Override
 	public void connectionClosed() {
 		clientsSet.remove(this);
+		
+		Hashtable<String, Serializable> params;
+		params = new Hashtable<String, Serializable>();
+		params.put(Command.userNameKey, getContactInfo().getName());
+		sendToAllOther(CommandFactory.createCommand("removeuser", params));
+		
 	}
 	
 	/* (non-Javadoc)
@@ -71,8 +57,8 @@ public class ConnectedClient implements IConnectionListener{
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ConnectedClient && name != null) {
-			return this.name.equals(((ConnectedClient)obj).name);
+		if (obj instanceof ConnectedClient && getName() != null) {
+			return this.getName().equals(((ConnectedClient)obj).getName());
 		} else {
 			return super.equals(obj);
 		}
@@ -83,8 +69,8 @@ public class ConnectedClient implements IConnectionListener{
 	 */
 	@Override
 	public int hashCode() {
-		if (name != null) {
-			return name.hashCode();
+		if (getName() != null) {
+			return getName().hashCode();
 		} else {
 			return super.hashCode();
 		}
@@ -101,5 +87,39 @@ public class ConnectedClient implements IConnectionListener{
 			}
 		}
 	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public boolean alreadyExist(){
+		return clientsSet.contains(this);
+	}
+	public void addToClientsSet(){
+		clientsSet.add(this);
+	}
+	public void setContactInfo(ContactInfo contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+	public ContactInfo getContactInfo() {
+		return contactInfo;
+	}
 	
+	public void initUser(){
+		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
+		params.put(Command.infoKey, contactInfo);
+		sendCommand(CommandFactory.createCommand("welcome", params));
+		for (ConnectedClient client: clientsSet){
+			if (!this.equals(client)){
+				params = new Hashtable<String, Serializable>();
+				params.put(Command.infoKey, client.contactInfo);
+				sendCommand(CommandFactory.createCommand("addfriend", params));
+			}
+		}
+	}
+	public void disconnect(){
+		connection.removeConnectionListener(this);
+	}
 }

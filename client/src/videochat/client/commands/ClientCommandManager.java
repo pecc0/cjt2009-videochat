@@ -39,15 +39,15 @@ public class ClientCommandManager extends CommandFactory {
 	/**
 	 * Used to add listeners before the connection have been initialized. </br>
 	 * The listeners are cached in a list. </br>
-	 * Can also be used instead of a call to {@link #getConnection()}.{@link Connection#addCommandListener(IConnectionListener) addCommandListener(ICommandListener)}
+	 * Can also be used instead of a call to {@link #getConnection()}.{@link Connection#addConnectionListener(IConnectionListener) addCommandListener(ICommandListener)}
 	 * @param l the listener
-	 * @see Connection#addCommandListener(IConnectionListener)
+	 * @see Connection#addConnectionListener(IConnectionListener)
 	 */
 	public void addConnectionCommandListener(IConnectionListener l) {
-		if (connection == null) {
+		if (connection == null || connection.isStopped()) {
 			listeners.add(l);
 		} else {
-			connection.addCommandListener(l);
+			connection.addConnectionListener(l);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class ClientCommandManager extends CommandFactory {
 		if (c != null) {
 			connection = c;
 			for (IConnectionListener l:listeners) {
-				connection.addCommandListener(l);
+				connection.addConnectionListener(l);
 			}
 			listeners.clear();
 		}

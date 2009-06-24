@@ -29,10 +29,25 @@ public class CommandFactory {
 			result = new LoginCommand(parameters);
 		} else if ("addfriend".equals(name)){
 			result = new AddFriendCommand(parameters);
+		} else if ("welcome".equals(name)){
+			result = new WelcomeCommand(parameters);
+		} else if ("removeuser".equals(name)){
+			result = new RemoveFriendCommand(parameters);
+		} else if ("sendavatar".equals(name)){
+			result = new SendAvatarCommand(parameters);
 		}
 		return result;
 	}
 	
-	
+	/**
+	 * Creates an error message command. The message is passed as string
+	 * @param errorString The message
+	 * @return An error message command
+	 */
+	public static Command createErrorMessage(String errorString){
+		Hashtable<String, Serializable> parameters = new Hashtable<String, Serializable>();
+		parameters.put(ErrorMessage.messageKey, errorString);
+		return new ErrorMessage(parameters);
+	}
 	
 }

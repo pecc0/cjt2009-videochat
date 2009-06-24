@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_oyNKIF6kEd6b3PniR-hF6Q" name="Package">
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_oyNKIF6kEd6b3PniR-hF6Q" name="">
   <elementImport xmi:id="_oy8xAF6kEd6b3PniR-hF6Q">
     <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
   </elementImport>
@@ -12,13 +12,13 @@
   <elementImport xmi:id="_oy8xA16kEd6b3PniR-hF6Q">
     <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
   </elementImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_w17wAF6kEd6b3PniR-hF6Q" name="ClientMainWindow" clientDependency="_9450cF8PEd6Zw7uHO3zSzA _fKljoF8oEd6Zw7uHO3zSzA _MDoYgF82Ed6Zw7uHO3zSzA">
+  <packagedElement xmi:type="uml:Class" xmi:id="_w17wAF6kEd6b3PniR-hF6Q" name="ClientMainWindow" clientDependency="_9450cF8PEd6Zw7uHO3zSzA _fKljoF8oEd6Zw7uHO3zSzA _Bp_HMGDCEd6EAfCVe1suww">
     <ownedAttribute xmi:id="_z3gDkF6kEd6b3PniR-hF6Q" name="panelContent" visibility="private" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_Kujo8F6nEd6b3PniR-hF6Q _dcUD8F8oEd6Zw7uHO3zSzA">
+  <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_dcUD8F8oEd6Zw7uHO3zSzA">
     <ownedAttribute xmi:id="_2GjVEF6kEd6b3PniR-hF6Q" name="panelVideo" visibility="private" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory">
+  <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory" clientDependency="_3aNE0GCSEd6BRqLhLfhxxw _8fgKsGCSEd6BRqLhLfhxxw _82S6EGCSEd6BRqLhLfhxxw _9LnCwGCSEd6BRqLhLfhxxw">
     <ownedOperation xmi:id="_7ZspsF6kEd6b3PniR-hF6Q" name="createCommand">
       <ownedParameter xmi:id="_2KgF4F8xEd6Zw7uHO3zSzA" direction="return"/>
       <ownedParameter xmi:id="_2KgF4V8xEd6Zw7uHO3zSzA" name="String"/>
@@ -28,7 +28,12 @@
       <ownedParameter xmi:id="_2pfvAV8xEd6Zw7uHO3zSzA" name="Image"/>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="ICommand"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="Command">
+    <ownedOperation xmi:id="_4QYwAGDAEd6EAfCVe1suww" name="execute">
+      <ownedParameter xmi:id="_6tJtYGDAEd6EAfCVe1suww" direction="return"/>
+      <ownedParameter xmi:id="_6tJtYWDAEd6EAfCVe1suww" name="ConnectedClient receiver"/>
+    </ownedOperation>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_IAmf0F6lEd6b3PniR-hF6Q" name="SendAvatarCommand">
     <generalization xmi:id="_MBMncF6lEd6b3PniR-hF6Q" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
     <ownedAttribute xmi:id="_Z-0Y4F6lEd6b3PniR-hF6Q" name="imageData" visibility="private" aggregation="composite"/>
@@ -43,7 +48,6 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AyuR9V6nEd6b3PniR-hF6Q" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_Kujo8F6nEd6b3PniR-hF6Q" supplier="_IAmf0F6lEd6b3PniR-hF6Q" client="_xntLMF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_rNzcsF8OEd6Zw7uHO3zSzA" name="SelectServerDialog" clientDependency="_fTnOsF8mEd6Zw7uHO3zSzA">
     <ownedAttribute xmi:id="_uXkC8F8OEd6Zw7uHO3zSzA" name="serverAddress" aggregation="composite"/>
   </packagedElement>
@@ -54,7 +58,7 @@
     </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_fTnOsF8mEd6Zw7uHO3zSzA" supplier="_VHrmMF8mEd6Zw7uHO3zSzA" client="_rNzcsF8OEd6Zw7uHO3zSzA"/>
-  <packagedElement xmi:type="uml:Package" xmi:id="_Sy4nIF8oEd6Zw7uHO3zSzA" name="jmapps"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Sy4nIF8oEd6Zw7uHO3zSzA" name="package jmapps"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_dcUD8F8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_xntLMF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_fKljoF8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_w17wAF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_YUGiEF8qEd6Zw7uHO3zSzA" name="ContactInfo"/>
@@ -87,7 +91,9 @@
       <ownedParameter xmi:id="_BvBWIF8rEd6Zw7uHO3zSzA" direction="return"/>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_ydzO0F8qEd6Zw7uHO3zSzA" name="FriendLabel"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ydzO0F8qEd6Zw7uHO3zSzA" name="FriendListItem">
+    <generalization xmi:id="__HHJUGCWEd6BRqLhLfhxxw" general="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_zcr48F8qEd6Zw7uHO3zSzA" memberEnd="_zcr48V8qEd6Zw7uHO3zSzA _zcr49F8qEd6Zw7uHO3zSzA">
     <ownedEnd xmi:id="_zcr48V8qEd6Zw7uHO3zSzA" name="src" type="_g1VjUF8qEd6Zw7uHO3zSzA" association="_zcr48F8qEd6Zw7uHO3zSzA">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zcr4818qEd6Zw7uHO3zSzA" value="1"/>
@@ -121,7 +127,6 @@
     <generalization xmi:id="_IHWwMF82Ed6Zw7uHO3zSzA" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
     <ownedAttribute xmi:id="_Ge5koF82Ed6Zw7uHO3zSzA" name="userName" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_MDoYgF82Ed6Zw7uHO3zSzA" supplier="_D7biUF82Ed6Zw7uHO3zSzA" client="_w17wAF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_QyjB4F86Ed6Zw7uHO3zSzA" name="Connection">
     <ownedOperation xmi:id="_7hTVAF89Ed6Zw7uHO3zSzA" name="onCommand">
       <ownedParameter xmi:id="_78k7wF89Ed6Zw7uHO3zSzA" direction="return"/>
@@ -136,9 +141,6 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kn1KRl86Ed6Zw7uHO3zSzA" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kn1KRV86Ed6Zw7uHO3zSzA" value="1"/>
     </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_UnJC8F88Ed6Zw7uHO3zSzA" name="ClientConnection">
-    <generalization xmi:id="_WjHncF88Ed6Zw7uHO3zSzA" general="_QyjB4F86Ed6Zw7uHO3zSzA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_LhflsF8_Ed6Zw7uHO3zSzA" name="TextI18n">
     <ownedAttribute xmi:id="_O6AZoF8_Ed6Zw7uHO3zSzA" name="bundle" aggregation="composite"/>
@@ -176,4 +178,41 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lqR9VWAMEd6ws8lsMrL9xQ" value="1"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NhwcsGCREd6BRqLhLfhxxw" name="ErrorMessage">
+    <generalization xmi:id="_P_220GCREd6BRqLhLfhxxw" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_3aNE0GCSEd6BRqLhLfhxxw" supplier="_IAmf0F6lEd6b3PniR-hF6Q" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_62vdIGCSEd6BRqLhLfhxxw" name="dependency"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_8fgKsGCSEd6BRqLhLfhxxw" supplier="_NhwcsGCREd6BRqLhLfhxxw" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_82S6EGCSEd6BRqLhLfhxxw" supplier="_v3kvQF8xEd6Zw7uHO3zSzA" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_9LnCwGCSEd6BRqLhLfhxxw" supplier="_D7biUF82Ed6Zw7uHO3zSzA" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4HEYkGCXEd6u0q9pKpwd0A" memberEnd="_4HEYkWCXEd6u0q9pKpwd0A _4HEYlGCXEd6u0q9pKpwd0A">
+    <ownedEnd xmi:id="_4HEYkWCXEd6u0q9pKpwd0A" name="src" type="_GcsAQGAJEd6ws8lsMrL9xQ" association="_4HEYkGCXEd6u0q9pKpwd0A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4HEYk2CXEd6u0q9pKpwd0A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4HEYkmCXEd6u0q9pKpwd0A" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_4HEYlGCXEd6u0q9pKpwd0A" name="dst" type="_QyjB4F86Ed6Zw7uHO3zSzA" association="_4HEYkGCXEd6u0q9pKpwd0A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4HEYlmCXEd6u0q9pKpwd0A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4HEYlWCXEd6u0q9pKpwd0A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_d1U2MGCvEd6EAfCVe1suww" name="CapturePanel" clientDependency="_fuxEEGCvEd6EAfCVe1suww">
+    <generalization xmi:id="_rcvuIGCvEd6EAfCVe1suww" general="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_fuxEEGCvEd6EAfCVe1suww" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_d1U2MGCvEd6EAfCVe1suww"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_g2vYwGCvEd6EAfCVe1suww" memberEnd="_g2vYwWCvEd6EAfCVe1suww _g2vYxGCvEd6EAfCVe1suww">
+    <ownedEnd xmi:id="_g2vYwWCvEd6EAfCVe1suww" name="src" type="_xntLMF6kEd6b3PniR-hF6Q" association="_g2vYwGCvEd6EAfCVe1suww">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g2vYw2CvEd6EAfCVe1suww" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g2vYwmCvEd6EAfCVe1suww" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_g2vYxGCvEd6EAfCVe1suww" name="dst" type="_d1U2MGCvEd6EAfCVe1suww" association="_g2vYwGCvEd6EAfCVe1suww">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g25JwGCvEd6EAfCVe1suww" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g2vYxWCvEd6EAfCVe1suww" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8VV9wGDBEd6EAfCVe1suww" name="SettingsDialog" clientDependency="_YKCMsGDCEd6EAfCVe1suww"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_Bp_HMGDCEd6EAfCVe1suww" supplier="_8VV9wGDBEd6EAfCVe1suww" client="_w17wAF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PI6KcGDCEd6EAfCVe1suww" name="VideoChatAppsCfg" clientDependency="_ZxvxYGDCEd6EAfCVe1suww"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_YKCMsGDCEd6EAfCVe1suww" supplier="_PI6KcGDCEd6EAfCVe1suww" client="_8VV9wGDBEd6EAfCVe1suww"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_ZxvxYGDCEd6EAfCVe1suww" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_PI6KcGDCEd6EAfCVe1suww"/>
 </uml:Package>

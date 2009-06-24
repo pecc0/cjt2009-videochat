@@ -5,26 +5,29 @@ import java.io.Serializable;
 import java.util.Hashtable;
 
 import videochat.server.connection.ConnectedClient;
-import videochat.shared.contact.ContactInfo;
 
 /**
- * Command for adding a friend to the friends list. 
- * Contains the friend info 
+ * TODO - DOCUMENT ME
  *
- * @author "ppetkov" (Jun 22, 2009)
+ * @author "ppetkov" (Jun 24, 2009)
  *
  * <br><b>History:</b> <br>
- * Jun 22, 2009 "ppetkov" created <br>
+ * Jun 24, 2009 "ppetkov" created <br>
  */
-public class AddFriendCommand extends Command {
-	private static final long serialVersionUID = 3046234845370167608L;
-	
-	public AddFriendCommand(Hashtable<String, Serializable> params) {
+public class RemoveFriendCommand extends Command {
+
+	private static final long serialVersionUID = -1270231718593362292L;
+
+	/**
+	 * See {@link Command#Command(Hashtable)}
+	 * @param params
+	 */
+	public RemoveFriendCommand(Hashtable<String, Serializable> params) {
 		super(params);
 	}
 	
-	public ContactInfo getFriendInfo(){
-		return (ContactInfo)getParameters().get(infoKey);
+	public String getUserName(){
+		return (String)getParameters().get(userNameKey);
 	}
 
 	/* (non-Javadoc)
