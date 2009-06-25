@@ -3,21 +3,22 @@
  */
 package videochat.client.ui;
 
-import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-
-import videochat.client.TextI18n;
 
 import jmapps.ui.JMDialog;
 import jmapps.ui.JMPanel;
+import videochat.client.TextI18n;
 
 /**
  * Dialog that prompts the user to select a server
@@ -27,19 +28,22 @@ import jmapps.ui.JMPanel;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public class SelectServerDialog extends JMDialog  implements ActionListener{
+public class SelectServerDialog extends JMDialog  
+	implements ActionListener, KeyListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6475885264182833515L;
-	private TextField serverAddress = null;
-	private TextField userName = null;
-	private Button okButton = null;
+	private JTextField serverAddress = null;
+	private JTextField userName = null;
+	private JButton okButton = null;
 	public SelectServerDialog(Frame parentFrame){
 		super(parentFrame, TextI18n.getText("selectserver"), true);
-		serverAddress = new TextField("localhost");
-		userName = new TextField();
-		okButton = new Button(TextI18n.getText("ok"));
+		serverAddress = new JTextField("localhost");
+		userName = new JTextField();
+		userName.setPreferredSize(new Dimension(100,15));
+		serverAddress.setPreferredSize(userName.getPreferredSize());
+		okButton = new JButton(TextI18n.getText("ok"));
 		okButton.addActionListener(this);
 		Label l1 = new Label(TextI18n.getText("serveraddress"));
 		Label l2 = new Label(TextI18n.getText("name"));
@@ -59,7 +63,8 @@ public class SelectServerDialog extends JMDialog  implements ActionListener{
 		panel.doLayout();
 		this.setLayout(new FlowLayout());
 		this.add(panel);
-		
+		userName.addKeyListener(this);
+		userName.requestFocus(false);
 		this.pack();
 	}
 	
@@ -75,6 +80,23 @@ public class SelectServerDialog extends JMDialog  implements ActionListener{
 	}
 	public String getUserName(){
 		return userName.getText();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			actionPerformed(new ActionEvent(okButton, 1001, "OK"));
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
 	}
 	
 }
