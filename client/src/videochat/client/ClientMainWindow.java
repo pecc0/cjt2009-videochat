@@ -19,8 +19,8 @@ import videochat.client.ui.UserPanel;
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
 import videochat.shared.commands.ErrorMessage;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.LoginCommand;
+import videochat.shared.connection.IConnectionListener;
 
 import jmapps.ui.JMDialog;
 import jmapps.ui.JMFrame;

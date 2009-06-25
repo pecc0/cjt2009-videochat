@@ -28,7 +28,7 @@
       <ownedParameter xmi:id="_2pfvAV8xEd6Zw7uHO3zSzA" name="Image"/>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="Command">
+  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="Command" clientDependency="_DH8hAGHVEd6zqPi1F-wpTw">
     <ownedOperation xmi:id="_4QYwAGDAEd6EAfCVe1suww" name="execute">
       <ownedParameter xmi:id="_6tJtYGDAEd6EAfCVe1suww" direction="return"/>
       <ownedParameter xmi:id="_6tJtYWDAEd6EAfCVe1suww" name="ConnectedClient receiver"/>
@@ -159,7 +159,8 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_loZ1YGAJEd6ws8lsMrL9xQ" supplier="_CQjxYF81Ed6Zw7uHO3zSzA" client="_00KP8F8vEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_byxssGAMEd6ws8lsMrL9xQ" name="ConnectedClient">
-    <generalization xmi:id="_y8jEoGAMEd6ws8lsMrL9xQ" general="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+    <generalization xmi:id="_3Z0F8GHUEd6zqPi1F-wpTw" general="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+    <generalization xmi:id="_8R2L4GHUEd6zqPi1F-wpTw" general="_5Rn8IGHUEd6zqPi1F-wpTw"/>
     <ownedAttribute xmi:id="_erZfoGAMEd6ws8lsMrL9xQ" name="connection" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_hZmLQGAMEd6ws8lsMrL9xQ" memberEnd="_hZmLQWAMEd6ws8lsMrL9xQ _hZmLRGAMEd6ws8lsMrL9xQ">
@@ -233,4 +234,6 @@
     <ownedAttribute xmi:id="_w0xCAGF7Ed6_NbSyShG_2A" name="message" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_GlIXAGF8Ed6_NbSyShG_2A" supplier="_uAwpUGF7Ed6_NbSyShG_2A" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5Rn8IGHUEd6zqPi1F-wpTw" name="ICommandReceiver"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_DH8hAGHVEd6zqPi1F-wpTw" supplier="_5Rn8IGHUEd6zqPi1F-wpTw" client="_CWWSwF6lEd6b3PniR-hF6Q"/>
 </uml:Package>

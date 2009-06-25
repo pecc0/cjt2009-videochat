@@ -15,10 +15,10 @@ import videochat.client.TextI18n;
 import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.AddFriendCommand;
 import videochat.shared.commands.Command;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.Message;
 import videochat.shared.commands.RemoveFriendCommand;
 import videochat.shared.commands.WelcomeCommand;
+import videochat.shared.connection.IConnectionListener;
 
 import jmapps.ui.JMPanel;
 

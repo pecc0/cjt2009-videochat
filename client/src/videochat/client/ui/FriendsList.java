@@ -8,8 +8,8 @@ import jmapps.ui.JMPanel;
 import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.AddFriendCommand;
 import videochat.shared.commands.Command;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.RemoveFriendCommand;
+import videochat.shared.connection.IConnectionListener;
 
 /**
  * A list of the users in the channel.

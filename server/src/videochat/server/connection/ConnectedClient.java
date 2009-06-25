@@ -9,8 +9,8 @@ import videochat.shared.ApplicationSettings;
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
 import videochat.shared.commands.ICommandReceiver;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.connection.Connection;
+import videochat.shared.connection.IConnectionListener;
 import videochat.shared.contact.ContactInfo;
 
 /**

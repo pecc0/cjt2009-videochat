@@ -1,7 +1,7 @@
 
-package videochat.shared.commands;
+package videochat.shared.connection;
 
-import videochat.shared.connection.Connection;
+import videochat.shared.commands.Command;
 
 /**
  * The IConnectionListener interface should be implemented by 

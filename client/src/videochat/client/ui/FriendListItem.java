@@ -11,8 +11,8 @@ import jmapps.ui.JMPanel;
 import videochat.client.TextI18n;
 import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.Command;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.SendAvatarCommand;
+import videochat.shared.connection.IConnectionListener;
 import videochat.shared.contact.ContactInfo;
 
 

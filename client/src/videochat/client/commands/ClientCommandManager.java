@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
-import videochat.shared.commands.IConnectionListener;
 import videochat.shared.connection.Connection;
+import videochat.shared.connection.IConnectionListener;
 
 /**
  * Used to send commands using the connection that is set while the manager is initialized.
