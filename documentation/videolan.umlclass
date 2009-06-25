@@ -1291,7 +1291,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_Fcshwl8rEd6Zw7uHO3zSzA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_Fcshw18rEd6Zw7uHO3zSzA"/>
       <element xmi:type="uml:Usage" href="videolan.uml#_FcshwF8rEd6Zw7uHO3zSzA"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FcshxF8rEd6Zw7uHO3zSzA" points="[0, 13, 228, -309]$[0, 257, 228, -65]$[-126, 293, 102, -29]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FcshxF8rEd6Zw7uHO3zSzA" points="[-1, 13, 227, -309]$[-23, 237, 205, -85]$[-126, 280, 102, -42]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Fc1rsF8rEd6Zw7uHO3zSzA" id="(0.11464968,0.8761905)"/>
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_x9_CIV8xEd6Zw7uHO3zSzA" type="4001" source="_v33qMF8xEd6Zw7uHO3zSzA" target="_CWp0wF6lEd6b3PniR-hF6Q">
@@ -1748,7 +1748,7 @@
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_DIFq8GHVEd6zqPi1F-wpTw" type="4002" source="_CWp0wF6lEd6b3PniR-hF6Q" target="_5TaE0GHUEd6zqPi1F-wpTw">
       <children xmi:type="notation:Node" xmi:id="_DIFq9GHVEd6zqPi1F-wpTw" type="6001">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_DIFq9WHVEd6zqPi1F-wpTw" x="8" y="3"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DIFq9WHVEd6zqPi1F-wpTw" x="6" y="-7"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_DIFq9mHVEd6zqPi1F-wpTw" visible="false" type="6010">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_DIFq92HVEd6zqPi1F-wpTw" y="20"/>
