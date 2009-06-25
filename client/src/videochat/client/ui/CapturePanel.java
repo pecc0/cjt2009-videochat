@@ -12,7 +12,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,6 +46,7 @@ import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.WelcomeCommand;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import com.sun.media.util.JMFI18N;
 
@@ -285,7 +285,6 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 			ByteArrayOutputStream jpeg = new ByteArrayOutputStream();
 			JPEGImageEncoder encoder =  JPEGCodec.createJPEGEncoder(jpeg);
 			
-			
 			FrameGrabbingControl fgc = (FrameGrabbingControl)mediaPlayerCurrent.getControl("javax.media.control.FrameGrabbingControl");
 			Buffer buf = fgc.grabFrame();
 			BufferToImage btoi = new BufferToImage((VideoFormat)buf.getFormat());// Convert it to an image Bufferimg = btoi.createImage(buf);//Creating Image from Buffer
@@ -308,21 +307,24 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 					0, 0, resizedImage.getWidth(null), resizedImage.getHeight(null), 
 					0, 0, img.getWidth(null), img.getHeight(null), null);
 				
+				JPEGEncodeParam jep = JPEGCodec.getDefaultJPEGEncodeParam(resizedImage);
+				float quality = ((float)VideoChatAppsCfg.getInstance().getJpegQuality()) / 100.f;
+				jep.setQuality(quality , 
+						false);
 				try {
-					encoder.encode(resizedImage);
+					encoder.encode(resizedImage, jep);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				byte[] jpegData = jpeg.toByteArray();
-				/*
+				
 				try {
 					FileOutputStream fis = new FileOutputStream("test.jpg");
 					fis.write(jpegData);
 					fis.close();
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
-				*/
+				
 				Hashtable<String, Serializable> parameters = new Hashtable<String, Serializable>();
 				
 				parameters.put(Command.avatarKey, jpegData);

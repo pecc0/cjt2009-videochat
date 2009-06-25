@@ -48,6 +48,7 @@ public class VideoChatAppsCfg extends JMAppsCfg {
 		sendingFps = getSendingFps();
 	}
 	public static final String  KEY_SENDING_FPS = "sendingfps";
+	public static final String  KEY_QPEG_QUAL = "jpegquality";
 	public static VideoChatAppsCfg getInstance() {
 		if (instance == null) {
 			instance = new VideoChatAppsCfg();
@@ -74,6 +75,23 @@ public class VideoChatAppsCfg extends JMAppsCfg {
 	}
 	public int getCachedSendingFps(){
 		return sendingFps;
+	}
+	
+	public void setJpegQuality(int jpegQual) {
+		props.setProperty(KEY_QPEG_QUAL, "" + jpegQual);
+	}
+	public int getJpegQuality() {
+		String      objValue;
+        int     result;
+
+        objValue = props.getProperty(KEY_QPEG_QUAL, "80");
+    	try {
+    		result = Integer.parseInt(objValue);
+    	} catch (NumberFormatException e) {
+    		result = 12;
+		}
+        
+        return result;
 	}
 	
 	/* (non-Javadoc)
