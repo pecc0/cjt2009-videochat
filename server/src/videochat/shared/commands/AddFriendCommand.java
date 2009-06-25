@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 import videochat.shared.contact.ContactInfo;
 
 /**
@@ -33,7 +32,7 @@ public class AddFriendCommand extends Command {
 	 * @see videochat.shared.commands.Command#execute(videochat.server.connection.ConnectedClient)
 	 */
 	@Override
-	public void execute(ConnectedClient receiver) {
+	public void execute(ICommandReceiver receiver) {
 		throw new RuntimeException("AddFriendCommand should not be received on teh server");
 	}
 	

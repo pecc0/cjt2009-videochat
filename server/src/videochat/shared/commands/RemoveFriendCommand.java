@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 
 /**
  * TODO - DOCUMENT ME
@@ -36,7 +35,7 @@ public class RemoveFriendCommand extends Command {
 	 * @see videochat.shared.commands.Command#execute(videochat.server.connection.ConnectedClient)
 	 */
 	@Override
-	public void execute(ConnectedClient receiver) {
+	public void execute(ICommandReceiver receiver) {
 		throw new RuntimeException("AddFriendCommand should not be received on teh server");
 	}
 	

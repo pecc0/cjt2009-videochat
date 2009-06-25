@@ -6,7 +6,6 @@ package videochat.shared.commands;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 
 /**
  * The base command class. Each command contains parameters hash table.
@@ -52,11 +51,11 @@ public abstract class Command implements Serializable {
 	}
 	/**
 	 * Each command must override this method in order to
-	 * perform certain operation upon the {@link ConnectedClient}
+	 * perform certain operation upon the {@link ICommandReceiver}
 	 * object passed as parameter. </br>
 	 * This method is executed on the server when the message is
 	 * received there.
 	 * @param receiver the command receiver
 	 */
-	public abstract void execute(ConnectedClient receiver);
+	public abstract void execute(ICommandReceiver receiver);
 }

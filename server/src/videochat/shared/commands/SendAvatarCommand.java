@@ -6,7 +6,6 @@ package videochat.shared.commands;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 
 /**
  * A command that contains a frame from the "movie avatar"
@@ -32,7 +31,7 @@ public class SendAvatarCommand extends Command {
 	 * @see videochat.shared.commands.Command#execute(videochat.server.connection.ConnectedClient)
 	 */
 	@Override
-	public void execute(ConnectedClient receiver) {
+	public void execute(ICommandReceiver receiver) {
 		
 		receiver.sendToAllOther(this);
 	}

@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 
 /**
  * A text message. This command is used to transfer messages between the
@@ -34,7 +33,7 @@ public class Message extends Command {
 	 * @see videochat.shared.commands.Command#execute(videochat.server.connection.ConnectedClient)
 	 */
 	@Override
-	public void execute(ConnectedClient receiver) {
+	public void execute(ICommandReceiver receiver) {
 		getParameters().put(dateTime, new Date());
 		receiver.sendToAllOther(this);
 		receiver.sendCommand(this);

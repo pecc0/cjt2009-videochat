@@ -6,7 +6,6 @@ package videochat.shared.commands;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-import videochat.server.connection.ConnectedClient;
 import videochat.shared.contact.ContactInfo;
 
 /**
@@ -30,7 +29,7 @@ public class LoginCommand extends Command {
 	 * @see videochat.shared.commands.Command#execute(videochat.server.connection.ConnectedClient)
 	 */
 	@Override
-	public void execute(ConnectedClient receiver) {
+	public void execute(ICommandReceiver receiver) {
 		receiver.setName(getUserName());
 		if (receiver.alreadyExist()){
 			receiver.sendCommand(CommandFactory.createErrorMessage(Command.messageUserExist));

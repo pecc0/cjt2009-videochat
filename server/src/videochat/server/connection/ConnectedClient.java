@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import videochat.shared.ApplicationSettings;
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
+import videochat.shared.commands.ICommandReceiver;
 import videochat.shared.commands.IConnectionListener;
 import videochat.shared.connection.Connection;
 import videochat.shared.contact.ContactInfo;
@@ -20,7 +21,7 @@ import videochat.shared.contact.ContactInfo;
  * <br><b>History:</b> <br>
  * Jun 23, 2009 "ppetkov" created <br>
  */
-public class ConnectedClient implements IConnectionListener {
+public class ConnectedClient implements IConnectionListener, ICommandReceiver {
 	private Connection connection;
 	private String name;
 	private ContactInfo contactInfo;
@@ -50,7 +51,7 @@ public class ConnectedClient implements IConnectionListener {
 		params = new Hashtable<String, Serializable>();
 		params.put(Command.userNameKey, getContactInfo().getName());
 		sendToAllOther(CommandFactory.createCommand(CommandFactory.commandTypeRemoveuser, params));
-		
+		System.out.println(contactInfo.getName() + " disconnected");
 	}
 	
 	/* (non-Javadoc)
@@ -109,7 +110,7 @@ public class ConnectedClient implements IConnectionListener {
 	}
 	
 	public void initUser(){
-		
+		System.out.println(contactInfo.getName() + " connected");
 		for (ConnectedClient client: clientsSet){
 			if (!this.equals(client)){
 				Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();

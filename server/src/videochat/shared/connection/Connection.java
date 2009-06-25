@@ -121,7 +121,7 @@ public class Connection implements Runnable {
 		}
 		catch (Exception e) {
 			if (e instanceof java.io.EOFException || e instanceof java.net.SocketException) {
-				System.out.println("Connection closed");
+				//System.out.println("Connection closed");
 			} else {
 				e.printStackTrace();
 			}
