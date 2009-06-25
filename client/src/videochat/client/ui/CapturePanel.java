@@ -12,6 +12,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Hashtable;
@@ -312,6 +314,15 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 					e.printStackTrace();
 				}
 				byte[] jpegData = jpeg.toByteArray();
+				/*
+				try {
+					FileOutputStream fis = new FileOutputStream("test.jpg");
+					fis.write(jpegData);
+					fis.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				*/
 				Hashtable<String, Serializable> parameters = new Hashtable<String, Serializable>();
 				
 				parameters.put(Command.avatarKey, jpegData);
