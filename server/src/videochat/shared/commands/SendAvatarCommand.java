@@ -33,7 +33,6 @@ public class SendAvatarCommand extends Command {
 	 */
 	@Override
 	public void execute(ConnectedClient receiver) {
-		//System.out.println("avatar");
 		
 		receiver.sendToAllOther(this);
 	}

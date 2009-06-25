@@ -42,6 +42,7 @@ import videochat.client.TextI18n;
 import videochat.client.VideoChatAppsCfg;
 import videochat.client.commands.ClientCommandManager;
 import videochat.shared.commands.Command;
+import videochat.shared.commands.CommandFactory;
 import videochat.shared.commands.IConnectionListener;
 import videochat.shared.commands.WelcomeCommand;
 
@@ -183,7 +184,7 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 		nameCaptureDeviceAudio = null;
 		nameCaptureDeviceVideo = null;
 		
-		dialogCapture = new CaptureDialog ( rootFrame, VideoChatAppsCfg.getInstance() );
+		dialogCapture = new CaptureDialog ( rootFrame, VideoChatAppsCfg.getJmCfg() );
 		dialogCapture.setVisible(true);
 		if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL) {
 			return;
@@ -329,7 +330,7 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 				
 				parameters.put(Command.avatarKey, jpegData);
 				parameters.put(Command.userNameKey, userName);
-				Command c = ClientCommandManager.createCommand("sendavatar", parameters);
+				Command c = ClientCommandManager.createCommand(CommandFactory.commandTypeSendAvatar, parameters);
 				ClientCommandManager.getInst().sendCommand(c);
 			}
 		}
@@ -413,5 +414,9 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 				}
 			}
 		}
+	}
+
+	public String getUserName() {
+		return userName;
 	}
 }

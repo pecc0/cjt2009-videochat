@@ -2,6 +2,7 @@
 package videochat.shared.commands;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Hashtable;
 
 import videochat.server.connection.ConnectedClient;
@@ -21,6 +22,7 @@ public class AddFriendCommand extends Command {
 	
 	public AddFriendCommand(Hashtable<String, Serializable> params) {
 		super(params);
+		getParameters().put(dateTime, new Date());
 	}
 	
 	public ContactInfo getFriendInfo(){
@@ -34,4 +36,9 @@ public class AddFriendCommand extends Command {
 	public void execute(ConnectedClient receiver) {
 		throw new RuntimeException("AddFriendCommand should not be received on teh server");
 	}
+	
+	public Date getTimeSent(){
+		return (Date)parameters.get(dateTime);
+	}
+	
 }

@@ -30,6 +30,7 @@ public abstract class Command implements Serializable {
 	
 	public final static String avatarKey = "avatar"; 
 	
+	public static final String dateTime="datetime";
 	//error messages
 	public static final String messageUserExist = "error.userexist";
 	
@@ -51,9 +52,10 @@ public abstract class Command implements Serializable {
 	}
 	/**
 	 * Each command must override this method in order to
-	 * perform certain operation on the {@link ConnectedClient}
+	 * perform certain operation upon the {@link ConnectedClient}
 	 * object passed as parameter. </br>
-	 * This method is executed only on the server.
+	 * This method is executed on the server when the message is
+	 * received there.
 	 * @param receiver the command receiver
 	 */
 	public abstract void execute(ConnectedClient receiver);

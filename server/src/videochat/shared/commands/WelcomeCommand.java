@@ -26,5 +26,7 @@ public class WelcomeCommand extends AddFriendCommand {
 		
 	}
 	
-	
+	public String getMessage(){
+		return (String)parameters.get(messageKey);
+	}
 }

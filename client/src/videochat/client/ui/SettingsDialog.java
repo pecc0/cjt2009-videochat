@@ -3,11 +3,9 @@
  */
 package videochat.client.ui;
 
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 
@@ -127,9 +125,9 @@ public class SettingsDialog extends JMDialog
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == framesPerSecond){
-			fpsLabel.setText(TextI18n.getText("settigngs.fps") + framesPerSecond.getValue());
+			fpsLabel.setText(TextI18n.getText("settings.fps") + framesPerSecond.getValue());
 		} else if (e.getSource() == jpegQualSlider){
-			jpegLabel.setText(TextI18n.getText("setting.jpeg") + jpegQualSlider.getValue() + "%");
+			jpegLabel.setText(TextI18n.getText("settings.jpeg") + jpegQualSlider.getValue() + "%");
 		}
 		this.pack();
 	}

@@ -18,12 +18,12 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_xntLMF6kEd6b3PniR-hF6Q" name="UserPanel" clientDependency="_dcUD8F8oEd6Zw7uHO3zSzA">
     <ownedAttribute xmi:id="_2GjVEF6kEd6b3PniR-hF6Q" name="panelVideo" visibility="private" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory" clientDependency="_3aNE0GCSEd6BRqLhLfhxxw _8fgKsGCSEd6BRqLhLfhxxw _82S6EGCSEd6BRqLhLfhxxw _9LnCwGCSEd6BRqLhLfhxxw">
+  <packagedElement xmi:type="uml:Class" xmi:id="_5q_FIF6kEd6b3PniR-hF6Q" name="CommandFactory" clientDependency="_3aNE0GCSEd6BRqLhLfhxxw _8fgKsGCSEd6BRqLhLfhxxw _82S6EGCSEd6BRqLhLfhxxw _9LnCwGCSEd6BRqLhLfhxxw _Pf7ZsGF6Ed6_NbSyShG_2A _GlIXAGF8Ed6_NbSyShG_2A">
     <ownedOperation xmi:id="_7ZspsF6kEd6b3PniR-hF6Q" name="createCommand">
       <ownedParameter xmi:id="_2KgF4F8xEd6Zw7uHO3zSzA" direction="return"/>
       <ownedParameter xmi:id="_2KgF4V8xEd6Zw7uHO3zSzA" name="String"/>
     </ownedOperation>
-    <ownedOperation xmi:id="_uj-CgF6mEd6b3PniR-hF6Q" name="createAvatarCommand">
+    <ownedOperation xmi:id="_uj-CgF6mEd6b3PniR-hF6Q" name="createAvatarCommand" clientDependency="_YpPuoGF6Ed6_NbSyShG_2A">
       <ownedParameter xmi:id="_2pfvAF8xEd6Zw7uHO3zSzA" direction="return"/>
       <ownedParameter xmi:id="_2pfvAV8xEd6Zw7uHO3zSzA" name="Image"/>
     </ownedOperation>
@@ -108,6 +108,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_00KP8F8vEd6Zw7uHO3zSzA" name="ServerMain" clientDependency="_loZ1YGAJEd6ws8lsMrL9xQ"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_v3kvQF8xEd6Zw7uHO3zSzA" name="AddFriendCommand">
     <generalization xmi:id="_x9_CIF8xEd6Zw7uHO3zSzA" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+    <ownedAttribute xmi:id="_KKjQcGF6Ed6_NbSyShG_2A" name="userName" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_CQjxYF81Ed6Zw7uHO3zSzA" name="ConnectionsManager"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_GVe_YF81Ed6Zw7uHO3zSzA" name="ServerConnection">
@@ -152,6 +153,9 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_GcsAQGAJEd6ws8lsMrL9xQ" name="ClientCommandManager">
     <generalization xmi:id="_L0TlMGAJEd6ws8lsMrL9xQ" general="_5q_FIF6kEd6b3PniR-hF6Q"/>
     <ownedAttribute xmi:id="_KK9o0GAJEd6ws8lsMrL9xQ" name="static command" aggregation="composite"/>
+    <ownedOperation xmi:id="_SotdoGF8Ed6_NbSyShG_2A" name="sendCommand">
+      <ownedParameter xmi:id="_UDdkYGF8Ed6_NbSyShG_2A" direction="return"/>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_loZ1YGAJEd6ws8lsMrL9xQ" supplier="_CQjxYF81Ed6Zw7uHO3zSzA" client="_00KP8F8vEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_byxssGAMEd6ws8lsMrL9xQ" name="ConnectedClient">
@@ -179,7 +183,7 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_NhwcsGCREd6BRqLhLfhxxw" name="ErrorMessage">
-    <generalization xmi:id="_P_220GCREd6BRqLhLfhxxw" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+    <generalization xmi:id="_P_220GCREd6BRqLhLfhxxw" general="_uAwpUGF7Ed6_NbSyShG_2A"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_3aNE0GCSEd6BRqLhLfhxxw" supplier="_IAmf0F6lEd6b3PniR-hF6Q" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_62vdIGCSEd6BRqLhLfhxxw" name="dependency"/>
@@ -215,4 +219,18 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_PI6KcGDCEd6EAfCVe1suww" name="VideoChatAppsCfg" clientDependency="_ZxvxYGDCEd6EAfCVe1suww"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_YKCMsGDCEd6EAfCVe1suww" supplier="_PI6KcGDCEd6EAfCVe1suww" client="_8VV9wGDBEd6EAfCVe1suww"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_ZxvxYGDCEd6EAfCVe1suww" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_PI6KcGDCEd6EAfCVe1suww"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Gd6moGF6Ed6_NbSyShG_2A" name="RemoveFriendCommand">
+    <generalization xmi:id="_SgdLcGF6Ed6_NbSyShG_2A" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+    <ownedAttribute xmi:id="_NEhHMGF6Ed6_NbSyShG_2A" name="userName" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_Pf7ZsGF6Ed6_NbSyShG_2A" supplier="_Gd6moGF6Ed6_NbSyShG_2A" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_WAuNMGF6Ed6_NbSyShG_2A" name="WelcomeCommand">
+    <generalization xmi:id="_d6K1sGF6Ed6_NbSyShG_2A" general="_v3kvQF8xEd6Zw7uHO3zSzA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_YpPuoGF6Ed6_NbSyShG_2A" supplier="_WAuNMGF6Ed6_NbSyShG_2A" client="_uj-CgF6mEd6b3PniR-hF6Q"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uAwpUGF7Ed6_NbSyShG_2A" name="Message">
+    <generalization xmi:id="_1kv_MGF7Ed6_NbSyShG_2A" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
+    <ownedAttribute xmi:id="_w0xCAGF7Ed6_NbSyShG_2A" name="message" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_GlIXAGF8Ed6_NbSyShG_2A" supplier="_uAwpUGF7Ed6_NbSyShG_2A" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
 </uml:Package>

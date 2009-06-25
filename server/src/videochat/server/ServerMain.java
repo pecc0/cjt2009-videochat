@@ -3,10 +3,16 @@
  */
 package videochat.server;
 
+import java.util.Scanner;
+
+
 import videochat.server.connection.ConnectionsManager;
+import videochat.shared.ApplicationSettings;
 
 /**
- * TODO - DOCUMENT ME
+ * The main server class.
+ * Prints a start message, calls {@link ConnectionsManager#startListening()}
+ * and starts waiting for command from the console
  *
  * @author "ppetkov" (Jun 22, 2009)
  *
@@ -16,11 +22,21 @@ import videochat.server.connection.ConnectionsManager;
 public class ServerMain {
 
 	/**
-	 * TODO - DOCUMENT ME
-	 * @param args
+	 * The main method
+	 * @param args No arguments recognized
 	 */
 	public static void main(String[] args) {
-		ConnectionsManager.listen();
+		ConnectionsManager.getInstance().startListening();
+		Scanner in = new Scanner(System.in);
+		
+		System.out.println(ApplicationSettings.getInstance().getStringProperty("server.startmessage"));
+		do {
+			String line = in.nextLine();
+			if ("exit".equals(line)){
+				ConnectionsManager.getInstance().stopListening();
+				break;
+			}
+		} while(true);
 
 	}
 

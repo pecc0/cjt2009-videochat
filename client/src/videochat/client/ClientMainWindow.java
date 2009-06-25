@@ -96,8 +96,9 @@ public class ClientMainWindow extends JMFrame
     public void windowClosing ( WindowEvent event ) {
  
     	VideoChatAppsCfg.getInstance().save();
-    	
-    	ClientCommandManager.getInst().getConnection().stopConnection();
+    	if (ClientCommandManager.getInst().getConnection() != null){
+    		ClientCommandManager.getInst().getConnection().stopConnection();
+    	}
         this.dispose();
         
     }
@@ -138,26 +139,31 @@ public class ClientMainWindow extends JMFrame
 	}
 	
 	private void selectServerAndUser(){
-		SelectServerDialog dlg = new SelectServerDialog(this);
-        dlg.setVisible(true);
-        if (dlg.getAction().equals(JMDialog.ACTION_OK)){
-        	try {
-        		ClientConnection connection = new ClientConnection(dlg.getServer(), dlg.getUserName());
-        		ClientCommandManager.getInst().setConnection(connection);
-        		ClientCommandManager.getInst().addConnectionCommandListener(this);
-        		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
-        		params.put(LoginCommand.userNameKey, dlg.getUserName());
-        		ClientCommandManager.getInst().sendCommand(CommandFactory.createCommand("login", params));
-        		
-        	} catch (Exception e) {
-				e.printStackTrace();
-				MessageDialog.createErrorDialog ( this,
-						TextI18n.getText("error.openconnection") + dlg.getServer() );
-				this.dispose();
-			}
-        } else {
-        	this.dispose();
-        }
+		while (true) {
+			SelectServerDialog dlg = new SelectServerDialog(this);
+	        dlg.setVisible(true);
+	        if (dlg.getAction().equals(JMDialog.ACTION_OK)){
+	        	try {
+	        		this.setTitle(TextI18n.getText("mainwindow.title.connecting"));
+	        		ClientConnection connection = new ClientConnection(dlg.getServer(), dlg.getUserName());
+	        		ClientCommandManager.getInst().setConnection(connection);
+	        		ClientCommandManager.getInst().addConnectionCommandListener(this);
+	        		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
+	        		params.put(LoginCommand.userNameKey, dlg.getUserName());
+	        		ClientCommandManager.getInst().sendCommand(CommandFactory.createCommand(CommandFactory.commandTypeLogin, params));
+	        		this.setTitle(TextI18n.getText("mainwindow.title"));
+	        		break;
+	        	} catch (Exception e) {
+					e.printStackTrace();
+					MessageDialog.createErrorDialog ( this,
+							TextI18n.getText("error.openconnection") + dlg.getServer() );
+					//this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+				}
+	        } else {
+	        	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	        	break;
+	        }
+		}
 	}
 
 	/* (non-Javadoc)

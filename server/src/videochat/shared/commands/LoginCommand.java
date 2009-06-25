@@ -44,7 +44,7 @@ public class LoginCommand extends Command {
 			
 			Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
 			params.put(Command.infoKey, contactInfo);
-			receiver.sendToAllOther(CommandFactory.createCommand("addfriend", params));
+			receiver.sendToAllOther(CommandFactory.createCommand(CommandFactory.commandTypeAddFriend, params));
 			receiver.initUser();
 		}
 	}

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Hashtable;
 
+import videochat.shared.ApplicationSettings;
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
 import videochat.shared.commands.IConnectionListener;
@@ -48,7 +49,7 @@ public class ConnectedClient implements IConnectionListener {
 		Hashtable<String, Serializable> params;
 		params = new Hashtable<String, Serializable>();
 		params.put(Command.userNameKey, getContactInfo().getName());
-		sendToAllOther(CommandFactory.createCommand("removeuser", params));
+		sendToAllOther(CommandFactory.createCommand(CommandFactory.commandTypeRemoveuser, params));
 		
 	}
 	
@@ -108,16 +109,20 @@ public class ConnectedClient implements IConnectionListener {
 	}
 	
 	public void initUser(){
-		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
-		params.put(Command.infoKey, contactInfo);
-		sendCommand(CommandFactory.createCommand("welcome", params));
+		
 		for (ConnectedClient client: clientsSet){
 			if (!this.equals(client)){
-				params = new Hashtable<String, Serializable>();
+				Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
 				params.put(Command.infoKey, client.contactInfo);
-				sendCommand(CommandFactory.createCommand("addfriend", params));
+				sendCommand(CommandFactory.createCommand(CommandFactory.commandTypeAddFriend, params));
 			}
 		}
+		
+		Hashtable<String, Serializable> params = new Hashtable<String, Serializable>();
+		params.put(Command.infoKey, contactInfo);
+		params.put(Command.messageKey, 
+			ApplicationSettings.getInstance().getStringProperty("server.welcomeuser"));
+		sendCommand(CommandFactory.createCommand(CommandFactory.commandTypeWelcome, params));
 	}
 	public void disconnect(){
 		connection.removeConnectionListener(this);

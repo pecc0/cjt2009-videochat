@@ -8,8 +8,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
 
-import videochat.shared.commands.Command;
-
 /**
  * TODO - DOCUMENT ME
  *
@@ -18,21 +16,52 @@ import videochat.shared.commands.Command;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public class ConnectionsManager {
+public class ConnectionsManager implements Runnable {
 	/**
 	 * The set of the currently connected clients.
 	 * This field is with default access because the 
 	 * classes from this package need access to it
 	 */
-	private static HashSet<ConnectedClient> clients;
+	private HashSet<ConnectedClient> clients;
+	private ServerSocket serverSocket;
+	private static ConnectionsManager instance;
+	private boolean isStopped;
+	private ConnectionsManager(){
+		isStopped = false;
+	}
 	
+	public static ConnectionsManager getInstance(){
+		if (instance == null) {
+			instance = new ConnectionsManager();
+		}
+		return instance;
+	}
+	
+	/**
+	 * Starts a new thread that executes the {@link #listen()} method
+	 */
+	public void startListening(){
+		new Thread(this).start();
+	}
+	
+	/**
+	 * Stops the listening thread
+	 */
+	public void stopListening(){
+		isStopped = true;
+		try {
+			serverSocket.close();
+		} catch (IOException e){
+			
+		}
+	}
 	/**
 	 * This method starts listening on a certain socket.
 	 * It blocks the current thread.
 	 * @author "ppetkov"
 	 */
-	public static void listen(){
-		ServerSocket serverSocket = null;
+	private void listen(){
+		serverSocket = null;
 		try {
 		    serverSocket = new ServerSocket(4444);
 		} catch (IOException e) {
@@ -49,16 +78,22 @@ public class ConnectionsManager {
 			    new ConnectedClient(connection, clients);
 			    
 			} catch (IOException e) {
-			    System.out.println("Accept failed: 4444");
-			    System.exit(-1);
+				if (isStopped){
+					break;
+				} else {
+				    System.out.println("Accept failed: 4444");
+				    System.exit(-1);
+				}
 			}
 
 		}
 	}
 	
-	public static void sendToAll(Command c){
-		for (ConnectedClient client:clients){
-			client.sendCommand(c);
-		}
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		listen();
 	}
 }

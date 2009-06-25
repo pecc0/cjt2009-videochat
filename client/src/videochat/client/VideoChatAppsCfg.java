@@ -1,15 +1,10 @@
 
 package videochat.client;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 import jmapps.util.JMAppsCfg;
+import videochat.shared.ApplicationSettings;
 
 /**
  * The video chat configuration. </br>
@@ -21,39 +16,23 @@ import jmapps.util.JMAppsCfg;
  * <br><b>History:</b> <br>
  * Jun 24, 2009 "ppetkov" created <br>
  */
-public class VideoChatAppsCfg extends JMAppsCfg {
-	private static VideoChatAppsCfg instance; 
-	private int sendingFps;
-	private Properties props;
+public class VideoChatAppsCfg extends ApplicationSettings {
 	
+	private int sendingFps;
+	
+	private static JMAppsCfg jmCfg; 
 	private VideoChatAppsCfg(){
-		super();
-		
-		File settings = new File("settings.properties");
-		InputStream is = null;
-		if (settings.exists()) {
-			try {
-				is = new FileInputStream(settings);
-			}catch (FileNotFoundException e) {
-			}
-		} else {
-			is = String.class.getResourceAsStream("/videochat/client/settings/settings.properties");
-		}
-		props = new Properties();
-		try {
-			props.load(is);
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
+		super("settings.properties", "/videochat/client/settings/settings.properties");
 		sendingFps = getSendingFps();
+		jmCfg = new JMAppsCfg();
 	}
 	public static final String  KEY_SENDING_FPS = "sendingfps";
-	public static final String  KEY_QPEG_QUAL = "jpegquality";
+	public static final String  KEY_JPEG_QUAL = "jpegquality";
 	public static VideoChatAppsCfg getInstance() {
 		if (instance == null) {
 			instance = new VideoChatAppsCfg();
 		}
-		return instance;
+		return (VideoChatAppsCfg)instance;
 	}
 	public void setSendingFps(int sendingFps) {
 		
@@ -61,49 +40,29 @@ public class VideoChatAppsCfg extends JMAppsCfg {
 		this.sendingFps = sendingFps;
 	}
 	public int getSendingFps() {
-		String      objValue;
-        int     result;
-
-        objValue = props.getProperty(KEY_SENDING_FPS, "12");
-    	try {
-    		result = Integer.parseInt(objValue);
-    	} catch (NumberFormatException e) {
-    		result = 12;
-		}
-        
-        return result;
+		return getIntProperty(KEY_SENDING_FPS);
 	}
 	public int getCachedSendingFps(){
 		return sendingFps;
 	}
 	
 	public void setJpegQuality(int jpegQual) {
-		props.setProperty(KEY_QPEG_QUAL, "" + jpegQual);
+		props.setProperty(KEY_JPEG_QUAL, "" + jpegQual);
 	}
 	public int getJpegQuality() {
-		String      objValue;
-        int     result;
-
-        objValue = props.getProperty(KEY_QPEG_QUAL, "80");
-    	try {
-    		result = Integer.parseInt(objValue);
-    	} catch (NumberFormatException e) {
-    		result = 12;
-		}
-        
-        return result;
+        return getIntProperty(KEY_JPEG_QUAL);
 	}
 	
-	/* (non-Javadoc)
-	 * @see jmapps.util.JMAppsCfg#save()
-	 */
-	@Override
 	public void save() {
-		super.save();
+		jmCfg.save();
 		try {
 			props.store(new FileOutputStream("settings.properties"), "Videolan settigns");
 		} catch (Exception e) {
 			System.out.println("Can't save the settings");
 		}
+	}
+	
+	public static JMAppsCfg getJmCfg() {
+		return jmCfg;
 	}
 }

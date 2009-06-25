@@ -17,6 +17,15 @@ import java.util.Hashtable;
  */
 public class CommandFactory {
 
+	public final static String commandTypeAddFriend = "addfriend";
+	
+	public final static String commandTypeLogin = "login";
+	
+	public final static String commandTypeWelcome = "welcome";
+	
+	public final static String commandTypeRemoveuser = "removeuser";
+	
+	public final static String commandTypeSendAvatar = "sendavatar";
 	/**
 	 * Commands factory method. Returns null if the name is not recognized
 	 * @param name the name of the command
@@ -25,15 +34,15 @@ public class CommandFactory {
 	 */
 	public static Command createCommand(String name, Hashtable<String, Serializable> parameters) {
 		Command result = null;
-		if ("login".equals(name) ) {
+		if (commandTypeLogin.equals(name) ) {
 			result = new LoginCommand(parameters);
-		} else if ("addfriend".equals(name)){
+		} else if (commandTypeAddFriend.equals(name)){
 			result = new AddFriendCommand(parameters);
-		} else if ("welcome".equals(name)){
+		} else if (commandTypeWelcome.equals(name)){
 			result = new WelcomeCommand(parameters);
-		} else if ("removeuser".equals(name)){
+		} else if (commandTypeRemoveuser.equals(name)){
 			result = new RemoveFriendCommand(parameters);
-		} else if ("sendavatar".equals(name)){
+		} else if (commandTypeSendAvatar.equals(name)){
 			result = new SendAvatarCommand(parameters);
 		}
 		return result;
@@ -49,5 +58,17 @@ public class CommandFactory {
 		parameters.put(ErrorMessage.messageKey, errorString);
 		return new ErrorMessage(parameters);
 	}
-	
+	/**
+	 * Creates a text message command.
+	 * See {@link Message}
+	 * @param userName The name of the user that send the message
+	 * @param message The message
+	 * @return The new command
+	 */
+	public static Command createMessageCommand(String userName, String message){
+		Hashtable<String, Serializable> parameters = new Hashtable<String, Serializable>();
+		parameters.put(ErrorMessage.messageKey, message);
+		parameters.put(ErrorMessage.userNameKey, userName);
+		return new Message(parameters);
+	}
 }
