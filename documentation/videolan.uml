@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_oyNKIF6kEd6b3PniR-hF6Q" name="">
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_oyNKIF6kEd6b3PniR-hF6Q" name="">
   <elementImport xmi:id="_oy8xAF6kEd6b3PniR-hF6Q">
     <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
   </elementImport>
@@ -28,7 +28,7 @@
       <ownedParameter xmi:id="_2pfvAV8xEd6Zw7uHO3zSzA" name="Image"/>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="Command" clientDependency="_DH8hAGHVEd6zqPi1F-wpTw">
+  <packagedElement xmi:type="uml:Class" xmi:id="_CWWSwF6lEd6b3PniR-hF6Q" name="Command" clientDependency="_pf9G0GJbEd6bnuAFXLOMGg">
     <ownedOperation xmi:id="_4QYwAGDAEd6EAfCVe1suww" name="execute">
       <ownedParameter xmi:id="_6tJtYGDAEd6EAfCVe1suww" direction="return"/>
       <ownedParameter xmi:id="_6tJtYWDAEd6EAfCVe1suww" name="ConnectedClient receiver"/>
@@ -61,7 +61,9 @@
   <packagedElement xmi:type="uml:Package" xmi:id="_Sy4nIF8oEd6Zw7uHO3zSzA" name="package jmapps"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_dcUD8F8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_xntLMF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_fKljoF8oEd6Zw7uHO3zSzA" supplier="_Sy4nIF8oEd6Zw7uHO3zSzA" client="_w17wAF6kEd6b3PniR-hF6Q"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_YUGiEF8qEd6Zw7uHO3zSzA" name="ContactInfo"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YUGiEF8qEd6Zw7uHO3zSzA" name="ContactInfo">
+    <ownedAttribute xmi:id="_atvPsGJbEd6bnuAFXLOMGg" name="userName" aggregation="composite"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_cUQk0F8qEd6Zw7uHO3zSzA" name="ChatPanel"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_eJ-JQF8qEd6Zw7uHO3zSzA" memberEnd="_eJ-JQV8qEd6Zw7uHO3zSzA _eJ-JRF8qEd6Zw7uHO3zSzA">
     <ownedEnd xmi:id="_eJ-JQV8qEd6Zw7uHO3zSzA" name="src" type="_w17wAF6kEd6b3PniR-hF6Q" association="_eJ-JQF8qEd6Zw7uHO3zSzA">
@@ -84,7 +86,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hmghlV8qEd6Zw7uHO3zSzA" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_r3WfQF8qEd6Zw7uHO3zSzA" name="IConnectionListener" clientDependency="_FcshwF8rEd6Zw7uHO3zSzA _sxKPwGHVEd6zqPi1F-wpTw _t3MqwGHVEd6zqPi1F-wpTw _u2iA0GHVEd6zqPi1F-wpTw _2uyWgGHVEd6zqPi1F-wpTw">
+  <packagedElement xmi:type="uml:Class" xmi:id="_r3WfQF8qEd6Zw7uHO3zSzA" name="IConnectionListener" clientDependency="_sxKPwGHVEd6zqPi1F-wpTw _t3MqwGHVEd6zqPi1F-wpTw _u2iA0GHVEd6zqPi1F-wpTw _2uyWgGHVEd6zqPi1F-wpTw">
     <ownedOperation xmi:id="_Ar0MsF8rEd6Zw7uHO3zSzA" name="receiveCommand">
       <ownedParameter xmi:id="_BvBWIF8rEd6Zw7uHO3zSzA" direction="return"/>
     </ownedOperation>
@@ -100,13 +102,12 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zcr49V8qEd6Zw7uHO3zSzA" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_FcshwF8rEd6Zw7uHO3zSzA" supplier="_CWWSwF6lEd6b3PniR-hF6Q" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_00KP8F8vEd6Zw7uHO3zSzA" name="ServerMain" clientDependency="_loZ1YGAJEd6ws8lsMrL9xQ"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_v3kvQF8xEd6Zw7uHO3zSzA" name="AddFriendCommand">
     <generalization xmi:id="_x9_CIF8xEd6Zw7uHO3zSzA" general="_CWWSwF6lEd6b3PniR-hF6Q"/>
     <ownedAttribute xmi:id="_KKjQcGF6Ed6_NbSyShG_2A" name="userName" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_CQjxYF81Ed6Zw7uHO3zSzA" name="ConnectionsManager"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CQjxYF81Ed6Zw7uHO3zSzA" name="ConnectionsManager" clientDependency="_huQsIGJbEd6bnuAFXLOMGg"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_GVe_YF81Ed6Zw7uHO3zSzA" name="ServerConnection">
     <generalization xmi:id="_gVan8F88Ed6Zw7uHO3zSzA" general="_QyjB4F86Ed6Zw7uHO3zSzA"/>
   </packagedElement>
@@ -227,10 +228,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Usage" xmi:id="_GlIXAGF8Ed6_NbSyShG_2A" supplier="_uAwpUGF7Ed6_NbSyShG_2A" client="_5q_FIF6kEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_5Rn8IGHUEd6zqPi1F-wpTw" name="ICommandReceiver" clientDependency="_2AlzwGHVEd6zqPi1F-wpTw"/>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_DH8hAGHVEd6zqPi1F-wpTw" supplier="_5Rn8IGHUEd6zqPi1F-wpTw" client="_CWWSwF6lEd6b3PniR-hF6Q"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_sxKPwGHVEd6zqPi1F-wpTw" supplier="_ydzO0F8qEd6Zw7uHO3zSzA" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_t3MqwGHVEd6zqPi1F-wpTw" supplier="_g1VjUF8qEd6Zw7uHO3zSzA" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_u2iA0GHVEd6zqPi1F-wpTw" supplier="_d1U2MGCvEd6EAfCVe1suww" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_2AlzwGHVEd6zqPi1F-wpTw" supplier="_byxssGAMEd6ws8lsMrL9xQ" client="_5Rn8IGHUEd6zqPi1F-wpTw"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_2uyWgGHVEd6zqPi1F-wpTw" supplier="_byxssGAMEd6ws8lsMrL9xQ" client="_r3WfQF8qEd6Zw7uHO3zSzA"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_huQsIGJbEd6bnuAFXLOMGg" supplier="_GVe_YF81Ed6Zw7uHO3zSzA" client="_CQjxYF81Ed6Zw7uHO3zSzA"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_pf9G0GJbEd6bnuAFXLOMGg" supplier="_5Rn8IGHUEd6zqPi1F-wpTw" client="_CWWSwF6lEd6b3PniR-hF6Q"/>
 </uml:Package>
