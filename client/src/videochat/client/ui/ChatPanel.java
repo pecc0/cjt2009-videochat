@@ -76,13 +76,15 @@ public class ChatPanel extends JMPanel implements IConnectionListener {
 	 */
 	@Override
 	public void receiveCommand(Command command) {
+		boolean historyChanged = false;
 		if (Message.class.equals(command.getClass())){
 			Message msg = (Message)command;
 			String message = msg.getMessage().replaceAll("\n", "\n\t");
 			String sender = msg.getSender();
 			String time = DateFormat.getInstance().format(msg.getTimeSent());
 			messageHistory.append("\n" + sender + " (" + time + ")" + ":\n\t" + message);
-			messageHistory.setCaretPosition(messageHistory.getText().length());
+			historyChanged = true;
+			
 			//Formatter
 			/*
 			JScrollBar sb = pane1.getVerticalScrollBar();
@@ -100,24 +102,30 @@ public class ChatPanel extends JMPanel implements IConnectionListener {
 			welcomeReceived = true;
 			messageHistory.append(f.toString());
 			messageHistory.append("\n");
+			historyChanged = true;
 		} else if (AddFriendCommand.class.equals(command.getClass())){
 			if (welcomeReceived) {
 				AddFriendCommand afc = ((AddFriendCommand)command);
-				messageHistory.append("(" + DateFormat.getInstance().format(afc.getTimeSent()) + ")>");
+				messageHistory.append("\n(" + DateFormat.getInstance().format(afc.getTimeSent()) + ")>");
 				messageHistory.append(new Formatter(new StringBuffer()).format(
 					TextI18n.getText("chat.userjoined"), 
 					afc.getFriendInfo().getName()).toString());
 				
 				messageHistory.append("\n");
+				historyChanged = true;
 			}
 		} else if (RemoveFriendCommand.class.equals(command.getClass())){
 			RemoveFriendCommand rfc = ((RemoveFriendCommand)command);
-			messageHistory.append("(" + DateFormat.getInstance().format(rfc.getTimeSent()) + ")>");
+			messageHistory.append("\n(" + DateFormat.getInstance().format(rfc.getTimeSent()) + ")>");
 			messageHistory.append(new Formatter(new StringBuffer()).format(
 				TextI18n.getText("chat.userexit"), 
 				rfc.getUserName()).toString());
 			
 			messageHistory.append("\n");
+			historyChanged = true;
+		}
+		if (historyChanged) {
+			messageHistory.setCaretPosition(messageHistory.getText().length());
 		}
 	}
 }

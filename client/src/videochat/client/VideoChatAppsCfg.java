@@ -40,7 +40,7 @@ public class VideoChatAppsCfg extends ApplicationSettings {
 		this.sendingFps = sendingFps;
 	}
 	public int getSendingFps() {
-		return getIntProperty(KEY_SENDING_FPS);
+		return getIntProperty(KEY_SENDING_FPS, 12);
 	}
 	public int getCachedSendingFps(){
 		return sendingFps;
@@ -50,7 +50,7 @@ public class VideoChatAppsCfg extends ApplicationSettings {
 		props.setProperty(KEY_JPEG_QUAL, "" + jpegQual);
 	}
 	public int getJpegQuality() {
-        return getIntProperty(KEY_JPEG_QUAL);
+        return getIntProperty(KEY_JPEG_QUAL, 80);
 	}
 	
 	public void save() {

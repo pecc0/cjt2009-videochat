@@ -318,14 +318,14 @@ implements ControllerListener, ItemListener, IConnectionListener, WindowListener
 					e.printStackTrace();
 				}
 				byte[] jpegData = jpeg.toByteArray();
-				
+				/*
 				try {
 					FileOutputStream fis = new FileOutputStream("test.jpg");
 					fis.write(jpegData);
 					fis.close();
 				} catch (Exception e) {
 				}
-				
+				*/
 				Hashtable<String, Serializable> parameters = new Hashtable<String, Serializable>();
 				
 				parameters.put(Command.avatarKey, jpegData);

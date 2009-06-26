@@ -51,7 +51,7 @@ public class ApplicationSettings {
 	public String getStringProperty(String key){
 		return props.getProperty(key);
 	}
-	public int getIntProperty(String key){
+	public int getIntProperty(String key, int def ){
 		String      objValue;
         int     result;
 
@@ -59,7 +59,7 @@ public class ApplicationSettings {
     	try {
     		result = Integer.parseInt(objValue);
     	} catch (NumberFormatException e) {
-    		result = 12;
+    		result = def;
 		}
         
         return result;
