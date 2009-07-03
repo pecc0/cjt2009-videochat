@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import videochat.shared.commands.Command;
+import videochat.shared.commands.CommandFactory;
+import videochat.shared.commands.ErrorMessage;
 
 /**
  * Base connection-contains functionality used for both server and client connections
@@ -71,8 +73,13 @@ public class Connection implements Runnable {
 		//commandsQueue.addLast(c);
 		try {
 			writer.writeObject(c);
-		}catch (IOException e) {
-			e.printStackTrace();
+		}
+		catch (IOException e) {
+			//e.printStackTrace();
+			Command c1 = CommandFactory.createErrorMessage(Command.connectionClosed);
+			for (IConnectionListener l:listeners){
+				l.receiveCommand(c1);
+			}
 		}
 	}
 	

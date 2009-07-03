@@ -32,7 +32,7 @@ public abstract class Command implements Serializable {
 	public static final String dateTime="datetime";
 	//error messages
 	public static final String messageUserExist = "error.userexist";
-	
+	public static final String connectionClosed = "connectionClosed";
 	
 	/**
 	 * Constructs a command. Optional parameters could be added

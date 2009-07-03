@@ -130,7 +130,8 @@ public class ClientMainWindow extends JMFrame
 		if (command instanceof ErrorMessage){
 			ErrorMessage em = (ErrorMessage) command;
 			MessageDialog.createErrorDialog(this, TextI18n.getText(em.getMessage()));
-			if (Command.messageUserExist.equals(em.getMessage())){
+			if (Command.messageUserExist.equals(em.getMessage()) 
+					|| Command.connectionClosed.equals(em.getMessage())){
 				ClientCommandManager.getInst().getConnection().stopConnection();
 				
 				selectServerAndUser();
