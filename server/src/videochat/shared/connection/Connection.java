@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import videochat.shared.commands.Command;
 import videochat.shared.commands.CommandFactory;
-import videochat.shared.commands.ErrorMessage;
 
 /**
  * Base connection-contains functionality used for both server and client connections
