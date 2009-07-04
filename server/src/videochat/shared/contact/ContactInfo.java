@@ -6,7 +6,8 @@ package videochat.shared.contact;
 import java.io.Serializable;
 
 /**
- * TODO - DOCUMENT ME
+ * Class to held the information about a client contact.
+ * (Like client user name, client name, etc.)
  *
  * @author "ppetkov" (Jun 22, 2009)
  *

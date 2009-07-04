@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 
 /**
- * TODO - DOCUMENT ME
+ * Command that instructs the clients to remove an user from their list 
  *
  * @author "ppetkov" (Jun 24, 2009)
  *

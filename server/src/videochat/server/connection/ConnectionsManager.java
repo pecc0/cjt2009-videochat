@@ -9,7 +9,9 @@ import java.net.Socket;
 import java.util.HashSet;
 
 /**
- * TODO - DOCUMENT ME
+ * Manages the connections. Contains the set of connected clients.
+ * Contains functionality to maintain a thread for listening 
+ * for connections on a certain port. 
  *
  * @author "ppetkov" (Jun 22, 2009)
  *
