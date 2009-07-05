@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Manages the connections. Contains the set of connected clients.
@@ -18,7 +19,7 @@ import java.util.HashSet;
  * <br><b>History:</b> <br>
  * Jun 22, 2009 "ppetkov" created <br>
  */
-public class ConnectionsManager implements Runnable {
+public class ConnectionsManager implements Runnable, IClientsSet {
 	/**
 	 * The set of the currently connected clients.
 	 * This field is with default access because the 
@@ -77,7 +78,7 @@ public class ConnectionsManager implements Runnable {
 			    clientSocket = serverSocket.accept();
 			    
 			    ServerConnection connection = new ServerConnection(clientSocket);
-			    new ConnectedClient(connection, clients);
+			    new ConnectedClient(connection, this);
 			    
 			} catch (IOException e) {
 				if (isStopped){
@@ -97,5 +98,27 @@ public class ConnectionsManager implements Runnable {
 	@Override
 	public void run() {
 		listen();
+	}
+
+	@Override
+	public void add(ConnectedClient c) {
+		clients.add(c);
+	}
+
+	@Override
+	public boolean contains(ConnectedClient c) {
+		
+		return clients.contains(c);
+	}
+
+	@Override
+	public void remove(ConnectedClient c) {
+		clients.remove(c);
+		
+	}
+
+	@Override
+	public Iterator<ConnectedClient> iterator() {
+		return java.util.Collections.unmodifiableCollection(clients).iterator();
 	}
 }

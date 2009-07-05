@@ -2,8 +2,8 @@
 package videochat.server.connection;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Set;
 
 import videochat.shared.ApplicationSettings;
 import videochat.shared.commands.Command;
@@ -15,7 +15,9 @@ import videochat.shared.contact.ContactInfo;
 
 /**
  * The client of the server. Each client has unique name.
- * The client adds himself to the {@link ConnectionsManager#clients} set once he receive his name from the client application
+ * The client receives an instance of the set of all clients, so that
+ * it can add/remove itself from it, iterate it, etc.
+ * TODO is it ok :?
  * @author "ppetkov" (Jun 23, 2009)
  *
  * <br><b>History:</b> <br>
@@ -25,8 +27,8 @@ public class ConnectedClient implements IConnectionListener, ICommandReceiver {
 	private Connection connection;
 	private String name;
 	private ContactInfo contactInfo;
-	private HashSet<ConnectedClient> clientsSet;
-	public ConnectedClient(Connection c, HashSet<ConnectedClient> clientsSet){
+	private IClientsSet clientsSet;
+	public ConnectedClient(Connection c, IClientsSet clientsSet){
 		connection = c;
 		connection.addConnectionListener(this);
 		this.clientsSet = clientsSet;
