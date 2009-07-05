@@ -36,6 +36,12 @@ public class SendAvatarCommand extends Command {
 		receiver.sendToAllOther(this);
 	}
 
+	/**
+	 * Returns the image data of the avatar.
+	 * This method makes the {@link SendAvatarCommand} immutable, as
+	 * it returns a reference to the data, not a copy of that data.
+	 * @return The image data as byte array
+	 */
 	public byte[] getAvatar(){
 		return (byte[])getParameters().get(avatarKey);
 	}

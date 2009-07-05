@@ -18,10 +18,15 @@ public class ContactInfo implements Serializable {
 
 	private static final long serialVersionUID = 7746264353653355554L;
 	private String name;
-
-	public void setName(String name) {
+	
+	/**
+	 * Constructs a new contact info object
+	 * @param name
+	 */
+	public ContactInfo(String name){
 		this.name = name;
 	}
+	
 	public String getName() {
 		return name;
 	}

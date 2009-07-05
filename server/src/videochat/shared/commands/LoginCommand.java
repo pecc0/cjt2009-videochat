@@ -36,8 +36,7 @@ public class LoginCommand extends Command {
 			receiver.disconnect();
 		} else {
 			receiver.addToClientsSet();
-			ContactInfo contactInfo = new ContactInfo();
-			contactInfo.setName(receiver.getName());
+			ContactInfo contactInfo = new ContactInfo(receiver.getName());
 			receiver.setContactInfo(contactInfo);
 			//init the rest of the contact info fields
 			
